@@ -62,7 +62,10 @@ export class ZonesComponent implements OnInit {
   }
 
   private _filter(caption: string): any[] {
-    return this.states.filter(option => option.caption.toLowerCase().startsWith(caption.toLowerCase()));
+    return this.states
+      .filter(option => option.caption
+        .toLowerCase()
+        .startsWith(caption.toLowerCase()));
   }
 
 
