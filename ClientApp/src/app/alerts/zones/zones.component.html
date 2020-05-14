@@ -1,0 +1,25 @@
+<div class="row">
+    <mat-form-field class="col-sm-2">
+        <mat-label>enter a state</mat-label>
+        <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl">
+        <mat-autocomplete #autoState="matAutocomplete" [displayWith]="displayWith">
+            <mat-option *ngFor="let state of statesFilter | async" [value]="state">
+                {{state.caption}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="col-sm-6" style="width: 100%">
+        <mat-label>filter</mat-label>
+        <input type="text" matInput [disabled]="!statesControl.valid">
+    </mat-form-field>
+</div>
+<div class="row">
+    <table class="table">
+        <thead>
+            <th> Id </th>
+            <th> Name </th>
+            <th> Type </th>
+            <th> State </th>
+        </thead>
+    </table>
+</div>
