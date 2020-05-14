@@ -13,21 +13,20 @@
         <input type="text" matInput [disabled]="!statesControl.valid" [(ngModel)]="filter">
     </mat-form-field>
 </div>
-<div class="row">
+<div class="row" *ngIf="showTable">
     <table class="table">
         <thead>
             <th> Id </th>
             <th> Name </th>
-            <th> Type </th>
-            <th> State </th>
         </thead>
         <tbody>
             <tr *ngFor="let zone of zones | zoneFilter:filter">
                 <td>{{zone.id}}</td>
                 <td>{{zone.name}}</td>
-                <td>{{zone.type}}</td>
-                <td>{{zone.state}}</td>
             </tr>
         </tbody>
     </table>
 </div>
+<ng-template [ngIf]="loading">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+</ng-template>

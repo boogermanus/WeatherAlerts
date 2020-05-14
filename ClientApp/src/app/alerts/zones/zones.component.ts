@@ -28,6 +28,8 @@ export class ZonesComponent implements OnInit {
   statesFilter: Observable<any[]>;
   zones: IZoneProperties[];
   filter = '';
+  loading = false;
+  showTable = false;
 
   constructor(private zonesService: ZonesService) { }
 
@@ -48,10 +50,13 @@ export class ZonesComponent implements OnInit {
     if (typeof this.statesControl.value !== 'object') {
       return;
     }
-
+    this.loading = true;
+    this.showTable = false;
     this.zonesService.getZonesByArea(this.statesControl.value.typeValue)
       .then((data: IZonesResponse) => {
         this.zones = data.features.map(f => f.properties);
+        this.loading = false;
+        this.showTable = true;
       });
   }
 
