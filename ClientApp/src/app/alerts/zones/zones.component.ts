@@ -57,6 +57,7 @@ export class ZonesComponent implements OnInit {
         this.zones = data.features.map(f => f.properties);
         this.loading = false;
         this.showTable = true;
+        this.filter = '';
       });
   }
 
