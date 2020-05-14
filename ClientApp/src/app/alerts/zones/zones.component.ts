@@ -27,6 +27,7 @@ export class ZonesComponent implements OnInit {
   states: any[] = StateConstants.states;
   statesFilter: Observable<any[]>;
   zones: IZoneProperties[];
+  filter = '';
 
   constructor(private zonesService: ZonesService) { }
 
