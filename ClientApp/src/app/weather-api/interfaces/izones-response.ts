@@ -1,6 +1,6 @@
 import { IZone } from './izone';
 
-export interface IAlertsResponse {
+export interface IZonesResponse {
     type: string;
     features: IZone[];
 }

@@ -3,6 +3,7 @@ import { StateConstants } from 'src/app/weather-api/models/state-constants';
 import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
+import { ZonesService } from 'src/app/weather-api/services/zones.service';
 
 function validateState(control: FormControl): ValidationErrors {
   const value = control.value;
@@ -24,7 +25,7 @@ export class ZonesComponent implements OnInit {
   states: any[] = StateConstants.states;
   statesFilter: Observable<any[]>;
 
-  constructor() { }
+  constructor(private zonesService: ZonesService) { }
 
   ngOnInit() {
     this.statesFilter = this.statesControl.valueChanges

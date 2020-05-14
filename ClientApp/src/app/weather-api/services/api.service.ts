@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
-import { WeatherApiModule } from '../weather-api.module';
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { IAlertsResponse } from '../interfaces/ialerts-response';
 import { IAlertResponse } from '../interfaces/ialert-response';
+import { IZonesResponse } from '../interfaces/izones-response';
 
 @Injectable()
 export class ApiService {
@@ -22,7 +22,7 @@ export class ApiService {
     return this.httpClient.get<IAlertResponse>(`${this.ALERTS_URL}/${path}`).toPromise();
   }
 
-  public zones(params?: HttpParams): Promise<any> {
+  public zones(params?: HttpParams): Promise<IZonesResponse> {
     return this.httpClient.get<any>(`${this.ZONES_URL}`, {params}).toPromise();
   }
 
