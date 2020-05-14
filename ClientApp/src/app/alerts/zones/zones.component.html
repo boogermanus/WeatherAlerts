@@ -1,6 +1,7 @@
+<div class="row ml-1"><p>Pick and state and Tab to show zones for your state</p></div>
 <div class="row">
     <mat-form-field class="col-sm-2">
-        <mat-label>enter a state</mat-label>
+        <mat-label>state</mat-label>
         <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl" (blur)="loadZones()">
         <mat-autocomplete #autoState="matAutocomplete" [displayWith]="displayWith">
             <mat-option *ngFor="let state of statesFilter | async" [value]="state">
