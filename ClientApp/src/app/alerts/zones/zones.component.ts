@@ -4,6 +4,8 @@ import { FormControl, ValidationErrors } from '@angular/forms';
 import { Observable } from 'rxjs';
 import { startWith, map } from 'rxjs/operators';
 import { ZonesService } from 'src/app/weather-api/services/zones.service';
+import { IZonesResponse } from 'src/app/weather-api/interfaces/izones-response';
+import { IZoneProperties } from 'src/app/weather-api/interfaces/izone-properties';
 
 function validateState(control: FormControl): ValidationErrors {
   const value = control.value;
@@ -24,6 +26,7 @@ export class ZonesComponent implements OnInit {
   statesControl = new FormControl('', validateState);
   states: any[] = StateConstants.states;
   statesFilter: Observable<any[]>;
+  zones: IZoneProperties[];
 
   constructor(private zonesService: ZonesService) { }
 
@@ -38,6 +41,17 @@ export class ZonesComponent implements OnInit {
 
   public displayWith(value: any) {
     return value && value.typeValue ? value.caption : '';
+  }
+
+  public loadZones() {
+    if (typeof this.statesControl.value !== 'object') {
+      return;
+    }
+
+    this.zonesService.getZonesByArea(this.statesControl.value.typeValue)
+      .then((data: IZonesResponse) => {
+        this.zones = data.features.map(f => f.properties);
+      });
   }
 
   private _filter(caption: string): any[] {

@@ -23,7 +23,7 @@ export class ApiService {
   }
 
   public zones(params?: HttpParams): Promise<IZonesResponse> {
-    return this.httpClient.get<any>(`${this.ZONES_URL}`, {params}).toPromise();
+    return this.httpClient.get<IZonesResponse>(`${this.ZONES_URL}`, {params}).toPromise();
   }
 
 }

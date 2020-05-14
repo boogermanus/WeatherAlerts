@@ -1,7 +1,7 @@
 <div class="row">
     <mat-form-field class="col-sm-2">
         <mat-label>enter a state</mat-label>
-        <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl">
+        <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl" (blur)="loadZones()">
         <mat-autocomplete #autoState="matAutocomplete" [displayWith]="displayWith">
             <mat-option *ngFor="let state of statesFilter | async" [value]="state">
                 {{state.caption}}
@@ -21,5 +21,13 @@
             <th> Type </th>
             <th> State </th>
         </thead>
+        <tbody>
+            <tr *ngFor="let zone of zones">
+                <td>{{zone.id}}</td>
+                <td>{{zone.name}}</td>
+                <td>{{zone.type}}</td>
+                <td>{{zone.state}}</td>
+            </tr>
+        </tbody>
     </table>
 </div>

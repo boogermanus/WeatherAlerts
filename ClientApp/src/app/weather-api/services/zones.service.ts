@@ -11,11 +11,14 @@ import { IZonesResponse } from '../interfaces/izones-response';
 export class ZonesService {
 
   private readonly AREA = 'area';
+  private readonly TYPE = 'type';
+  private readonly COUNTY = 'county';
   constructor(private apiService: ApiService) { }
 
   getZonesByArea(area: string): Promise<IZonesResponse> {
     const params = new HttpParams()
-      .set(this.AREA, area);
+      .append(this.AREA, area)
+      .append(this.TYPE, this.COUNTY);
 
     return this.apiService.zones(params);
   }
