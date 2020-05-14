@@ -8,8 +8,9 @@ export class ZonePipe implements PipeTransform {
 
   transform(value: IZoneProperties[], filterBy: string): IZoneProperties[] {
       filterBy = filterBy ? filterBy.toLowerCase() : null;
-      return filterBy ? value.filter((item: IZoneProperties) =>
-        item.name.toLowerCase().indexOf(filterBy) !== -1) : value;
+      return filterBy
+        ? value.filter((item: IZoneProperties) => item.name.toLowerCase().startsWith(filterBy))
+        : value;
   }
 
 }
