@@ -19,11 +19,17 @@
         <thead>
             <th> Id </th>
             <th> Name </th>
+            <th> Add </th>
         </thead>
         <tbody>
             <tr *ngFor="let zone of zones | zoneFilter:filter">
                 <td>{{zone.id}}</td>
                 <td>{{zone.name}}</td>
+                <td>
+                    <button mat-mini-fab color="primary">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                </td>
             </tr>
         </tbody>
     </table>
