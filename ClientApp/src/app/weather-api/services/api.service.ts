@@ -9,12 +9,14 @@ export class ApiService {
 
   private readonly ALERTS_URL = 'https://api.weather.gov/alerts';
   private readonly ACTIVE_ALERTS_URL = 'https://api.weather.gov/alerts/active';
+  private readonly BAD_URL = 'http://asdflkasduriasdoifasudofioasudfoausdfouaoduf.com';
   private readonly ZONES_URL = 'https://api.weather.gov/zones';
 
   constructor(private httpClient: HttpClient) { }
 
   public activeAlerts(params?: HttpParams): Promise<IAlertsResponse> {
-
+    // uncomment to have a bad time
+    // return this.httpClient.get<IAlertsResponse>(this.BAD_URL).toPromise();
     return this.httpClient.get<IAlertsResponse>(this.ACTIVE_ALERTS_URL, {params}).toPromise();
   }
 

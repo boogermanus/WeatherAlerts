@@ -1,3 +1,6 @@
+<ng-template [ngIf]="errorLoading">
+    <div class="alert alert-danger">Error loading data from https://api.weather.gov/alerts</div>
+</ng-template>
 <div [hidden]="loading">
     <mat-form-field style="margin-right: 20px;">
         <mat-label>Filter On</mat-label>

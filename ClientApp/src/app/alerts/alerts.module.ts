@@ -8,6 +8,8 @@ import { AlertsViewComponent } from './alerts-view/alerts-view.component';
 import { ZonesComponent } from './zones/zones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZonePipe } from './pipes/zone.pipe';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 
 
 @NgModule({
@@ -21,6 +23,7 @@ import { ZonePipe } from './pipes/zone.pipe';
     MaterialModule
   ],
   exports: [AlertsComponent, AlertsViewComponent],
-  providers: []
+  // might be needed soon
+  // providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }]
 })
 export class AlertsModule { }

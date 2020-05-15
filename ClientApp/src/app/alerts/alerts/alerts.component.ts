@@ -27,6 +27,7 @@ export class AlertsComponent implements OnInit {
   public alerts: IAlertProperties[] = [];
   public loading = true;
   public dataSource: MatTableDataSource<IAlertProperties>;
+  public errorLoading = false;
   private originalFilterPredicate: (data: IAlertProperties, filter: string) => boolean;
 
   @ViewChild(MatPaginator, {static: true})paginator: MatPaginator;
@@ -36,7 +37,11 @@ export class AlertsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.alertsService.getActiveAlerts()
-      .then((data: IAlertsResponse) => this.setupDataSource(data));
+      .then((data: IAlertsResponse) => this.setupDataSource(data))
+      .catch((reason) => {
+        this.loading = false;
+        this.errorLoading = true;
+      });
   }
 
   private setupDataSource(data: IAlertsResponse): void {
