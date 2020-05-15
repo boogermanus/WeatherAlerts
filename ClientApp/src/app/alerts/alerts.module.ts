@@ -10,6 +10,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZonePipe } from './pipes/zone.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
     ReactiveFormsModule,
     AlertsRoutingModule,
     WeatherApiModule,
-    MaterialModule
+    MaterialModule,
+    BrowserAnimationsModule,
   ],
   exports: [AlertsComponent, AlertsViewComponent],
   // might be needed soon

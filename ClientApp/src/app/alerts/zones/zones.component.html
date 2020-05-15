@@ -1,3 +1,4 @@
+
 <div class="row ml-1"><p>Pick a state and Tab to show zones for your state</p></div>
 <div class="row">
     <mat-form-field class="col-sm-2">
@@ -19,14 +20,14 @@
         <thead>
             <th> Id </th>
             <th> Name </th>
-            <th> Add to Dashboard</th>
+            <th></th>
         </thead>
         <tbody>
             <tr *ngFor="let zone of zones | zoneFilter:filter">
                 <td>{{zone.id}}</td>
                 <td>{{zone.name}}</td>
                 <td>
-                    <button mat-mini-fab color="primary">
+                    <button mat-mini-fab matTooltip="Add zone to dashboard" matTooltipPosition="left" color="primary">
                         <mat-icon>add</mat-icon>
                     </button>
                 </td>
