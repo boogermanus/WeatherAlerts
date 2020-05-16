@@ -17,4 +17,5 @@ export interface IAlertProperties {
     onset: Date;
     expires: Date;
     ends: Date;
+    areas?: string[];
 }

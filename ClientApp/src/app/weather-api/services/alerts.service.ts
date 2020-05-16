@@ -43,6 +43,11 @@ export class AlertsService {
   public mapAlertResponseToAlertProperties(response: IAlertResponse): IAlertProperties {
     const properties = response.properties;
     properties.senderName = this.chopNwsFromSenderName(properties.senderName);
+    properties.areas = this.splitAreaDesc(properties.areaDesc);
     return properties;
+  }
+
+  private splitAreaDesc(areaDesc: string): string[] {
+    return areaDesc.split(';').map(s => s.trim());
   }
 }

@@ -1,9 +1,17 @@
 <mat-card class="card">
-    <mat-card-title>{{alert.headline}}</mat-card-title>
-    <mat-card-subtitle>Severity: {{alert.severity}}</mat-card-subtitle>
+    <mat-card-header>
+        <div mat-card-avatar>
+            <button matTooltip="Back" mat-icon-button (click)="back()">
+                <mat-icon>arrow_back</mat-icon>
+            </button></div>
+        <mat-card-title>{{alert.headline}}</mat-card-title>
+        <mat-card-subtitle>Severity: <span [ngClass]="severity">{{alert.severity}}</span></mat-card-subtitle>
+    </mat-card-header>
     <mat-card-content>{{alert.description}}</mat-card-content>
     <mat-card-footer>
-        Locations:
-        {{alert.areaDesc}}
+        <b>Locations</b>
+        <ul class="list-group">
+            <li class="list-group-item" *ngFor="let area of alert.areas">{{area}}</li>
+        </ul>
     </mat-card-footer>
 </mat-card>
