@@ -1,7 +1,12 @@
-﻿using capstone.Data;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+﻿using System.Linq;
+using System.Collections.Generic;
+using System.Security.Claims;
+using capstone.Data;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using Microsoft.EntityFrameworkCore;
+using capstone.Models;
+using System;
 
 namespace capstone.Controllers
 {
@@ -15,6 +20,33 @@ namespace capstone.Controllers
         public ApplicationUserZoneController(ApplicationDbContext context)
         {
             _context = context;
+        }
+
+        [HttpGet]
+        public async Task<List<ApplicationUserZone>> GetUserZone([FromQuery]string userId)
+        {
+            if(string.IsNullOrEmpty(userId))
+                userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            return await _context.ApplicationUserZones.Where(auz => auz.UserId == userId).ToListAsync();
+        }
+
+        [HttpGet("all")]
+        public async Task<List<ApplicationUserZone>> GetAllUserZones()
+        {
+            return await _context.ApplicationUserZones.ToListAsync();
+        }
+
+        [HttpPost]
+        public async Task<ApplicationUserZone> PostUserZone([FromBody]ApplicationUserZone zone) 
+        {
+            if(zone.UserId == null)
+                zone.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            _context.ApplicationUserZones.Add(zone);
+            await _context.SaveChangesAsync();
+
+            return zone;
         }
     }
 }

@@ -39,6 +39,7 @@ export class AlertsComponent implements OnInit {
     this.alertsService.getActiveAlerts()
       .then((data: IAlertsResponse) => this.setupDataSource(data))
       .catch((reason) => {
+        console.log(reason);
         this.loading = false;
         this.errorLoading = true;
       });
