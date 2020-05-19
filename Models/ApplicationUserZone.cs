@@ -11,7 +11,7 @@ namespace capstone.Models
         public int Id { get; set; }
         public string ZoneId { get; set; }
         public DateTime CreatedOn { get; set; }
-        public bool Visable {get;set;}
+        public bool Visible { get; set; }
         public string UserId { get; set; }
         public ApplicationUser User { get; set; }
     }
