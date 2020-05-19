@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApplicationUserZoneService } from 'src/app/services/application-user-zone.service';
-import { IApplicationZoneUser } from 'src/app/interfaces/iapplication-zone-user';
+import { IApplicationUserZone } from 'src/app/interfaces/iapplication-user-zone';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 })
 export class MyZonesComponent implements OnInit {
 
-  zones: IApplicationZoneUser[];
+  zones: IApplicationUserZone[];
   constructor(private applicationUserZoneService: ApplicationUserZoneService) { }
 
   async ngOnInit() {
