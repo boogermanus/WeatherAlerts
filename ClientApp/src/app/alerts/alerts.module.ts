@@ -11,10 +11,12 @@ import { ZonePipe } from './pipes/zone.pipe';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MyZonesComponent } from './my-zones/my-zones.component';
+import { ApplicationUserZoneService } from '../services/application-user-zone.service';
 
 
 @NgModule({
-  declarations: [AlertsComponent, AlertsViewComponent, ZonesComponent, ZonePipe],
+  declarations: [AlertsComponent, AlertsViewComponent, ZonesComponent, ZonePipe, MyZonesComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -27,5 +29,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   exports: [AlertsComponent, AlertsViewComponent],
   // might be needed soon
   // providers: [{ provide: HTTP_INTERCEPTORS, useClass: AuthorizeInterceptor, multi: true }]
+  providers: [ApplicationUserZoneService]
 })
 export class AlertsModule { }

@@ -9,13 +9,13 @@ export class ApplicationUserZoneService {
 
   constructor(private httpClient: HttpClient, @Inject('BASE_URL') private baseUrl: string) { }
 
-  async getUserZones(userId?: string): Promise<IApplicationZoneUser> {
+  async getUserZones(userId?: string): Promise<IApplicationZoneUser[]> {
     let params = new HttpParams();
 
-    if (!userId) {
+    if (userId) {
       params = params.set('userId', userId);
     }
 
-    return await this.httpClient.get<IApplicationZoneUser>(`${this.baseUrl}applicationzoneuser`, {params}).toPromise();
+    return await this.httpClient.get<IApplicationZoneUser[]>(`${this.baseUrl}applicationuserzone`, {params}).toPromise();
   }
 }
