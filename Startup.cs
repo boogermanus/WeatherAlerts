@@ -40,6 +40,8 @@ namespace capstone
             services.AddAuthentication()
                 .AddIdentityServerJwt();
             services.AddControllersWithViews()
+            // stupid dotnet core doesn't send the 'Z' back to front end angular which
+            // causes dates to be seralized incorrect coming back.
                 .AddJsonOptions(options => options.JsonSerializerOptions.Converters.Add(new DateTimeConverter()));
             services.AddRazorPages();
             // In production, the Angular files will be served from this directory
