@@ -38,7 +38,7 @@ export class ZonesComponent implements OnInit {
       .pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.caption),
-        map(caption => caption ? this.FilterState(caption) : this.states.slice())
+        map(caption => caption ? this.filterState(caption) : this.states.slice())
       );
   }
 
@@ -61,7 +61,7 @@ export class ZonesComponent implements OnInit {
       });
   }
 
-  private FilterState(caption: string): any[] {
+  private filterState(caption: string): any[] {
     return this.states
       .filter(option => option.caption
         .toLowerCase()

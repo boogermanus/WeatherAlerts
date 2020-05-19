@@ -34,7 +34,7 @@ namespace capstone.Controllers
         [HttpGet("all")]
         public async Task<List<ApplicationUserZone>> GetAllUserZones()
         {
-            return await _context.ApplicationUserZones.ToListAsync();
+            return await _context.ApplicationUserZones.Include(auz => auz.User).ToListAsync();
         }
 
         [HttpPost]
