@@ -42,9 +42,7 @@ namespace capstone.Controllers
         {
             if(zone.UserId == null)
                 zone.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
-
-            // 
-            zone.CreatedOn = zone.CreatedOn.ToLocalTime();
+            
             _context.ApplicationUserZones.Add(zone);
             await _context.SaveChangesAsync();
 
