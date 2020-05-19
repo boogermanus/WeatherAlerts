@@ -18,4 +18,8 @@ export class ApplicationUserZoneService {
 
     return await this.httpClient.get<IApplicationUserZone[]>(`${this.baseUrl}applicationuserzone`, {params}).toPromise();
   }
+
+  async addUserZone(userZone: IApplicationUserZone): Promise<IApplicationUserZone> {
+    return await this.httpClient.post<IApplicationUserZone>(`${this.baseUrl}applicationuserzone`, userZone).toPromise();
+  }
 }

@@ -6,6 +6,8 @@ import { startWith, map } from 'rxjs/operators';
 import { ZonesService } from 'src/app/weather-api/services/zones.service';
 import { IZonesResponse } from 'src/app/weather-api/interfaces/izones-response';
 import { IZoneProperties } from 'src/app/weather-api/interfaces/izone-properties';
+import { ApplicationUserZoneService } from 'src/app/services/application-user-zone.service';
+import { IApplicationUserZone } from 'src/app/interfaces/iapplication-user-zone';
 
 function validateState(control: FormControl): ValidationErrors {
   const value = control.value;
@@ -31,7 +33,8 @@ export class ZonesComponent implements OnInit {
   loading = false;
   showTable = false;
 
-  constructor(private zonesService: ZonesService) { }
+  constructor(private zonesService: ZonesService,
+              private applicationUserZoneService: ApplicationUserZoneService) { }
 
   ngOnInit() {
     this.statesFilter = this.statesControl.valueChanges
@@ -68,5 +71,13 @@ export class ZonesComponent implements OnInit {
         .startsWith(caption.toLowerCase()));
   }
 
+  public addZone(id: string) {
+    const newZone: IApplicationUserZone = {
+      zoneId: id,
+      createdOn: new Date(),
+      visible: true
+    };
 
+    this.applicationUserZoneService.addUserZone(newZone);
+  }
 }

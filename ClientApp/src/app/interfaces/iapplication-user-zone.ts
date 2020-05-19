@@ -1,7 +1,7 @@
 export interface IApplicationUserZone {
-    id: number;
+    id?: number;
     zoneId: string;
     createdOn: Date;
     visible: boolean;
-    userId: string;
+    userId?: string;
 }
