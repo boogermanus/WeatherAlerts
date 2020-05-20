@@ -20,6 +20,10 @@ export class ApiService {
     return this.httpClient.get<IAlertsResponse>(this.ACTIVE_ALERTS_URL, {params}).toPromise();
   }
 
+  public activeAlertsByZone(zoneId: string) {
+    return this.httpClient.get<IAlertsResponse>(`${this.ACTIVE_ALERTS_URL}/zone/${zoneId}`).toPromise();
+  }
+
   public alert(path: string): Promise<IAlertResponse> {
     return this.httpClient.get<IAlertResponse>(`${this.ALERTS_URL}/${path}`).toPromise();
   }
