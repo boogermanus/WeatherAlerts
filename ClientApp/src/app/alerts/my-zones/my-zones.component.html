@@ -1,4 +1,4 @@
-<div *ngFor="let zone of zones">
-    <h3>{{zone.zoneId}}</h3>
-    <app-view-zone-alerts [zoneId]="zone.zoneId"></app-view-zone-alerts>
+<div *ngFor="let zone of zones" class="myzone">
+    <h3>{{zone.name}} - {{zone.state}}</h3>
+    <app-view-zone-alerts [zoneId]="zone.id"></app-view-zone-alerts>
 </div>

@@ -5,6 +5,9 @@ import { Observable } from 'rxjs';
 import { IAlertProperties } from 'src/app/weather-api/interfaces/ialert-properties';
 import { IAlertsResponse } from 'src/app/weather-api/interfaces/ialerts-response';
 import { AlertsService } from 'src/app/weather-api/services/alerts.service';
+import { IZonesResponse } from 'src/app/weather-api/interfaces/izones-response';
+import { IZoneProperties } from 'src/app/weather-api/interfaces/izone-properties';
+import { ZonesService } from 'src/app/weather-api/services/zones.service';
 
 @Component({
   selector: 'app-my-zones',
@@ -13,12 +16,17 @@ import { AlertsService } from 'src/app/weather-api/services/alerts.service';
 })
 export class MyZonesComponent implements OnInit {
 
-  zones: IApplicationUserZone[];
-  alerts: IAlertProperties[] = [];
-  constructor(private applicationUserZoneService: ApplicationUserZoneService) { }
+  userZones: IApplicationUserZone[];
+  zones: IZoneProperties[];
+
+  constructor(private applicationUserZoneService: ApplicationUserZoneService,
+              private zonesService: ZonesService) { }
 
   async ngOnInit() {
-    this.zones = await this.applicationUserZoneService.getUserZones();
+    this.userZones = await this.applicationUserZoneService.getUserZones();
+    const userZoneIds = this.userZones.map(z => z.zoneId);
+    const data = await this.zonesService.getZoneById(userZoneIds);
+    this.zones = data.features.map(f => f.properties);
   }
 
 }

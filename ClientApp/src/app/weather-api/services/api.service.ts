@@ -3,6 +3,7 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 import { IAlertsResponse } from '../interfaces/ialerts-response';
 import { IAlertResponse } from '../interfaces/ialert-response';
 import { IZonesResponse } from '../interfaces/izones-response';
+import { IZone } from '../interfaces/izone';
 
 @Injectable()
 export class ApiService {
