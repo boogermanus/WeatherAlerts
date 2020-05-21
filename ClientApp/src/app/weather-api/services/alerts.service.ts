@@ -37,6 +37,7 @@ export class AlertsService {
   public mapAlertsToAlertProperties(alert: IAlert): IAlertProperties {
     const properties = alert.properties;
     properties.senderName = this.chopNwsFromSenderName(properties.senderName);
+    properties.areas = this.splitAreaDesc(properties.areaDesc);
     return properties;
   }
 
