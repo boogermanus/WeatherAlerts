@@ -1,3 +1,6 @@
+<ng-template [ngIf]="alerts.length === 0">
+    <h3 class="alert alert-success">No alerts.</h3>
+</ng-template>
 <mat-accordion>
     <mat-expansion-panel *ngFor="let alert of alerts">
         <mat-expansion-panel-header class="expansionPanel">

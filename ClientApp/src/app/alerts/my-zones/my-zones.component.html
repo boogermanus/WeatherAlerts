@@ -1,4 +1,8 @@
+
 <div *ngFor="let zone of zones" class="myzone">
     <h3>{{zone.name}} - {{zone.state}}</h3>
+    <ng-template [ngIf]="!zone">
+        <h3 class="alert alert-success">No alerts.</h3>
+    </ng-template>
     <app-view-zone-alerts [zoneId]="zone.id"></app-view-zone-alerts>
 </div>
