@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { IAlertProperties } from 'src/app/weather-api/interfaces/ialert-properties';
 import { AlertsService } from 'src/app/weather-api/services/alerts.service';
@@ -14,6 +14,7 @@ export class AlertsViewComponent implements OnInit {
   readonly ID = 'id';
   // replace this def with the other and get an error.
   // alert: IAlertProperties
+  @Input()
   alert: IAlertProperties = new AlertProperties();
   severity: string;
   constructor(
@@ -23,8 +24,12 @@ export class AlertsViewComponent implements OnInit {
 
   async ngOnInit() {
     const id = this.activatedRoute.snapshot.params[this.ID];
-    const alert = await this.alertsService.getAlertById(id);
-    this.alert = this.alertsService.mapAlertResponseToAlertProperties(alert);
+
+    if (this.alert.id === '') {
+      const alert = await this.alertsService.getAlertById(id);
+      this.alert = this.alertsService.mapAlertResponseToAlertProperties(alert);
+    }
+
     this.severity = SeverityConstants.getSeverityClass(this.alert.severity);
   }
 
