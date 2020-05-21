@@ -1,0 +1,8 @@
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let alert of alerts">
+        <mat-expansion-panel-header>
+            <mat-panel-title>{{alert.headline}}</mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-alerts-view [alert]="alert"></app-alerts-view>
+    </mat-expansion-panel>
+</mat-accordion>

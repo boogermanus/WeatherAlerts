@@ -15,17 +15,10 @@ export class MyZonesComponent implements OnInit {
 
   zones: IApplicationUserZone[];
   alerts: IAlertProperties[] = [];
-  constructor(private applicationUserZoneService: ApplicationUserZoneService,
-              private alertsService: AlertsService) { }
+  constructor(private applicationUserZoneService: ApplicationUserZoneService) { }
 
   async ngOnInit() {
     this.zones = await this.applicationUserZoneService.getUserZones();
-
-    for (const zone of this.zones) {
-      const data: IAlertsResponse = await this.alertsService.getAlertByZoneId(zone.zoneId);
-      const alerts: IAlertProperties[] = data.features.map(f => this.alertsService.mapAlertsToAlertProperties(f));
-      this.alerts.push(...alerts);
-    }
   }
 
 }

@@ -1,10 +1,4 @@
-<div>
-    <mat-accordion>
-        <mat-expansion-panel *ngFor="let alert of alerts">
-            <mat-expansion-panel-header>
-                <mat-panel-title>{{alert.id}}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <app-alerts-view [alert]="alert"></app-alerts-view>
-        </mat-expansion-panel>
-    </mat-accordion>
+<div *ngFor="let zone of zones">
+    <h3>{{zone.zoneId}}</h3>
+    <app-view-zone-alerts [zoneId]="zone.zoneId"></app-view-zone-alerts>
 </div>

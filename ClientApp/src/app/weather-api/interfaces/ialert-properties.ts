@@ -18,4 +18,5 @@ export interface IAlertProperties {
     expires: Date;
     ends: Date;
     areas?: string[];
+    zoneId?: string;
 }

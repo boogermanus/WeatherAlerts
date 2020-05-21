@@ -13,10 +13,11 @@ import { AuthorizeInterceptor } from 'src/api-authorization/authorize.intercepto
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyZonesComponent } from './my-zones/my-zones.component';
 import { ApplicationUserZoneService } from '../services/application-user-zone.service';
+import { ViewZoneAlertsComponent } from './view-zone-alerts/view-zone-alerts.component';
 
 
 @NgModule({
-  declarations: [AlertsComponent, AlertsViewComponent, ZonesComponent, ZonePipe, MyZonesComponent],
+  declarations: [AlertsComponent, AlertsViewComponent, ZonesComponent, ZonePipe, MyZonesComponent, ViewZoneAlertsComponent],
   imports: [
     CommonModule,
     FormsModule,
