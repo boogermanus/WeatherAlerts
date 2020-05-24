@@ -48,5 +48,18 @@ namespace capstone.Controllers
 
             return zone;
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ApplicationUserZone> DeleteUserZone(string id) 
+        {
+            var zone = await _context.ApplicationUserZones.FindAsync(id);
+
+            if(zone != null)
+                _context.Remove(zone);
+
+            await _context.SaveChangesAsync();
+
+            return zone;
+        }
     }
 }
