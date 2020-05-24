@@ -32,17 +32,20 @@ export class ZonesComponent implements OnInit {
   filter = '';
   loading = false;
   showTable = false;
+  userZones: IApplicationUserZone[] = [];
 
   constructor(private zonesService: ZonesService,
               private applicationUserZoneService: ApplicationUserZoneService) { }
 
-  ngOnInit() {
+  async ngOnInit() {
     this.statesFilter = this.statesControl.valueChanges
       .pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.caption),
         map(caption => caption ? this.filterState(caption) : this.states.slice())
       );
+
+    this.userZones = await this.applicationUserZoneService.getUserZones();
   }
 
   public displayWith(value: any) {

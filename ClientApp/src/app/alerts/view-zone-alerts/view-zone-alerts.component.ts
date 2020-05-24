@@ -12,7 +12,7 @@ export class ViewZoneAlertsComponent implements OnInit {
 
   @Input()zoneId: string;
 
-  alerts: IAlertProperties[];
+  alerts: IAlertProperties[] = [];
   constructor(private alertsService: AlertsService) { }
 
   async ngOnInit() {

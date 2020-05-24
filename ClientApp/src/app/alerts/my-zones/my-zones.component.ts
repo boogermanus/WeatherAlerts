@@ -16,8 +16,8 @@ import { ZonesService } from 'src/app/weather-api/services/zones.service';
 })
 export class MyZonesComponent implements OnInit {
 
-  userZones: IApplicationUserZone[];
-  zones: IZoneProperties[];
+  userZones: IApplicationUserZone[] = [];
+  zones: IZoneProperties[] = [];
 
   constructor(private applicationUserZoneService: ApplicationUserZoneService,
               private zonesService: ZonesService) { }
