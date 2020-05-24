@@ -48,11 +48,11 @@ export class ZonesComponent implements OnInit {
     this.userZones = await this.applicationUserZoneService.getUserZones();
   }
 
-  public displayWith(value: any) {
+  public displayWith(value: any): string {
     return value && value.typeValue ? value.caption : '';
   }
 
-  public loadZones() {
+  public loadZones(): void {
     if (typeof this.statesControl.value !== 'object') {
       return;
     }
@@ -74,7 +74,7 @@ export class ZonesComponent implements OnInit {
         .startsWith(caption.toLowerCase()));
   }
 
-  public addZone(id: string) {
+  public addZone(id: string): void {
     const newZone: IApplicationUserZone = {
       zoneId: id,
       createdOn: new Date(),
@@ -82,5 +82,9 @@ export class ZonesComponent implements OnInit {
     };
 
     this.applicationUserZoneService.addUserZone(newZone);
+  }
+
+  public userHasZone(zoneId: string): boolean {
+    return this.userZones.findIndex(uz => uz.zoneId === zoneId) !== -1;
   }
 }
