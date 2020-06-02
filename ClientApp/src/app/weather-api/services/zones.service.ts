@@ -31,4 +31,5 @@ export class ZonesService {
 
     return this.apiService.zones(new HttpParams().append(this.ID, idParam));
   }
+
 }
