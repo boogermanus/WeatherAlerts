@@ -64,6 +64,14 @@ export class ZonesComponent implements OnInit {
         this.loading = false;
         this.showTable = true;
         this.filter = '';
+
+        for (const zone of this.zones) {
+          if (this.userZones.findIndex(uz => uz.zoneId === zone.id) !== -1) {
+            zone.userHasZone = true;
+          } else {
+            zone.userHasZone = false;
+          }
+        }
       });
   }
 
@@ -80,15 +88,15 @@ export class ZonesComponent implements OnInit {
       createdOn: new Date(),
       visible: true
     };
-
+    const zone = this.zones.find(z => z.id === id);
+    zone.userHasZone = true;
     this.applicationUserZoneService.addUserZone(newZone);
   }
 
-  public userHasZone(zoneId: string): boolean {
-    return this.userZones.findIndex(uz => uz.zoneId === zoneId) !== -1;
-  }
-
-  public deleteZone(zoneId: number) {
-    return this.applicationUserZoneService.deleteUserZone(zoneId);
+  public deleteZone(zoneId: string) {
+    const userZone = this.userZones.find(uz => uz.zoneId === zoneId);
+    const zone = this.zones.find(z => z.id === zoneId);
+    zone.userHasZone = false;
+    return this.applicationUserZoneService.deleteUserZone(userZone.id);
   }
 }

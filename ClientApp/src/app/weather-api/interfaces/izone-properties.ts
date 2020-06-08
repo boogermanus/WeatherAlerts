@@ -3,4 +3,5 @@ export interface IZoneProperties {
     type: string;
     name: string;
     state: string;
+    userHasZone: boolean;
 }

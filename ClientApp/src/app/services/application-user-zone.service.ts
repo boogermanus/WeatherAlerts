@@ -24,6 +24,6 @@ export class ApplicationUserZoneService {
   }
 
  async deleteUserZone(userZoneId: number) {
-   return await this.httpClient.delete<IApplicationUserZone>(`${this.baseUrl}/applicationuserzone/${userZoneId}`);
+   return await this.httpClient.delete<IApplicationUserZone>(`${this.baseUrl}applicationuserzone/${userZoneId}`).toPromise();
  }
 }
