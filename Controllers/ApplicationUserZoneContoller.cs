@@ -50,7 +50,7 @@ namespace capstone.Controllers
         }
 
         [HttpDelete("{id}")]
-        public async Task<ApplicationUserZone> DeleteUserZone(string id) 
+        public async Task<ApplicationUserZone> DeleteUserZone(int id) 
         {
             var zone = await _context.ApplicationUserZones.FindAsync(id);
 

@@ -87,4 +87,8 @@ export class ZonesComponent implements OnInit {
   public userHasZone(zoneId: string): boolean {
     return this.userZones.findIndex(uz => uz.zoneId === zoneId) !== -1;
   }
+
+  public deleteZone(zoneId: number) {
+    return this.applicationUserZoneService.deleteUserZone(zoneId);
+  }
 }

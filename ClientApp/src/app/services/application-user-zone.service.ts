@@ -22,4 +22,8 @@ export class ApplicationUserZoneService {
   async addUserZone(userZone: IApplicationUserZone): Promise<IApplicationUserZone> {
     return await this.httpClient.post<IApplicationUserZone>(`${this.baseUrl}applicationuserzone`, userZone).toPromise();
   }
+
+ async deleteUserZone(userZoneId: number) {
+   return await this.httpClient.delete<IApplicationUserZone>(`${this.baseUrl}/applicationuserzone/${userZoneId}`);
+ }
 }
