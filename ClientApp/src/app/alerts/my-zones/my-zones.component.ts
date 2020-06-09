@@ -26,7 +26,10 @@ export class MyZonesComponent implements OnInit {
     this.userZones = await this.applicationUserZoneService.getUserZones();
     const userZoneIds = this.userZones.map(z => z.zoneId);
     const data = await this.zonesService.getZoneById(userZoneIds);
-    this.zones = data.features.map(f => f.properties);
+    this.zones = data.features.map(f => {
+      f.properties.userHasZone = true;
+      return f.properties;
+    });
   }
 
 }
