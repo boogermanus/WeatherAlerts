@@ -49,33 +49,35 @@ namespace capstone.Controllers
             return zone;
         }
 
+        // [HttpDelete("{id}")]
+        // public async Task<ApplicationUserZone> DeleteUserZone(int id) 
+        // {
+        //     var zone = await _context.ApplicationUserZones.FindAsync(id);
+
+        //     if(zone != null)
+        //         _context.Remove(zone);
+
+        //     await _context.SaveChangesAsync();
+
+        //     return zone;
+        // }
+
         [HttpDelete("{id}")]
-        public async Task<ApplicationUserZone> DeleteUserZone(int id) 
+        public async Task<ApplicationUserZone> DeleteUserZone(string zoneId)
         {
-            var zone = await _context.ApplicationUserZones.FindAsync(id);
+            var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            if(zone != null)
-                _context.Remove(zone);
-
-            await _context.SaveChangesAsync();
-
-            return zone;
-        }
-
-        [HttpDelete("{userId}/{zoneId}")]
-        public async Task<ApplicationUserZone> DeleteUserZone(string userId, string zoneId)
-        {
-            var zone = await _context.ApplicationUserZones
+            var userZone = await _context.ApplicationUserZones
                 .Where(auz => auz.UserId == userId && auz.ZoneId == zoneId)
                 .FirstOrDefaultAsync();
             
-            if(zone != null)
+            if(userZone != null)
             {
-                _context.ApplicationUserZones.Remove(zone);
+                _context.ApplicationUserZones.Remove(userZone);
                 await _context.SaveChangesAsync();
             }
 
-            return zone;
+            return userZone;
         }
     }
 }
