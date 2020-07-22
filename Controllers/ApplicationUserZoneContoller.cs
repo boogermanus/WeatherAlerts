@@ -42,6 +42,8 @@ namespace capstone.Controllers
         {
             if(zone.UserId == null)
                 zone.UserId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            // zone.CreatedOn = DateTime.Now;
             
             _context.ApplicationUserZones.Add(zone);
             await _context.SaveChangesAsync();
@@ -49,26 +51,13 @@ namespace capstone.Controllers
             return zone;
         }
 
-        // [HttpDelete("{id}")]
-        // public async Task<ApplicationUserZone> DeleteUserZone(int id) 
-        // {
-        //     var zone = await _context.ApplicationUserZones.FindAsync(id);
-
-        //     if(zone != null)
-        //         _context.Remove(zone);
-
-        //     await _context.SaveChangesAsync();
-
-        //     return zone;
-        // }
-
         [HttpDelete("{id}")]
-        public async Task<ApplicationUserZone> DeleteUserZone(string zoneId)
+        public async Task<ApplicationUserZone> DeleteUserZone(int id)
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var userZone = await _context.ApplicationUserZones
-                .Where(auz => auz.UserId == userId && auz.ZoneId == zoneId)
+                .Where(auz => auz.UserId == userId && auz.Id == id)
                 .FirstOrDefaultAsync();
             
             if(userZone != null)

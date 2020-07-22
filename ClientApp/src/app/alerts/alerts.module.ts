@@ -8,8 +8,6 @@ import { AlertsViewComponent } from './alerts-view/alerts-view.component';
 import { ZonesComponent } from './zones/zones.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ZonePipe } from './pipes/zone.pipe';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthorizeInterceptor } from 'src/api-authorization/authorize.interceptor';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MyZonesComponent } from './my-zones/my-zones.component';
 import { ApplicationUserZoneService } from '../services/application-user-zone.service';

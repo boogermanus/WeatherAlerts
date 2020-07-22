@@ -11,13 +11,16 @@ import { IAlertsResponse } from 'src/app/weather-api/interfaces/ialerts-response
 export class ViewZoneAlertsComponent implements OnInit {
 
   @Input()zoneId: string;
-
-  alerts: IAlertProperties[] = [];
+  loading = true;
+  alerts: IAlertProperties[];
   constructor(private alertsService: AlertsService) { }
 
-  async ngOnInit() {
-    const data: IAlertsResponse = await this.alertsService.getAlertByZoneId(this.zoneId);
-    this.alerts = data.features.map(f => this.alertsService.mapAlertsToAlertProperties(f));
+  ngOnInit() {
+    this.alertsService.getAlertByZoneId(this.zoneId)
+      .then((data) => {
+        this.alerts = data.features.map(f => this.alertsService.mapAlertsToAlertProperties(f));
+        this.loading = false;
+      });
   }
 
 }
