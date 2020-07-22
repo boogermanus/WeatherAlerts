@@ -51,13 +51,13 @@ namespace capstone.Controllers
             return zone;
         }
 
-        [HttpDelete("{id}")]
-        public async Task<ApplicationUserZone> DeleteUserZone(int id)
+        [HttpDelete("{zoneId}")]
+        public async Task<ApplicationUserZone> DeleteUserZone(string zoneId)
         {
             var userId = HttpContext.User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var userZone = await _context.ApplicationUserZones
-                .Where(auz => auz.UserId == userId && auz.Id == id)
+                .Where(auz => auz.UserId == userId && auz.ZoneId == zoneId)
                 .FirstOrDefaultAsync();
             
             if(userZone != null)

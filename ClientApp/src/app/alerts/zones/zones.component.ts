@@ -94,9 +94,8 @@ export class ZonesComponent implements OnInit {
   }
 
   public deleteZone(zoneId: string) {
-    const userZone = this.userZones.find(uz => uz.zoneId === zoneId);
     const zone = this.zones.find(z => z.id === zoneId);
     zone.userHasZone = false;
-    return this.applicationUserZoneService.deleteUserZone(userZone.id);
+    return this.applicationUserZoneService.deleteUserZone(zoneId);
   }
 }

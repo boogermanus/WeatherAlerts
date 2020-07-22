@@ -23,7 +23,7 @@ export class ApplicationUserZoneService {
     return await this.httpClient.post<IApplicationUserZone>(`${this.baseUrl}applicationuserzone`, userZone).toPromise();
   }
 
- async deleteUserZone(userZoneId: number) {
-   return await this.httpClient.delete<IApplicationUserZone>(`${this.baseUrl}applicationuserzone/${userZoneId}`).toPromise();
+ async deleteUserZone(zoneId: string) {
+   return await this.httpClient.delete<IApplicationUserZone>(`${this.baseUrl}applicationuserzone/${zoneId}`).toPromise();
  }
 }
