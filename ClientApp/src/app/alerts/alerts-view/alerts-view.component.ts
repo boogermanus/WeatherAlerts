@@ -14,8 +14,8 @@ export class AlertsViewComponent implements OnInit {
   readonly ID = 'id';
   // replace this def with the other and get an error.
   // alert: IAlertProperties
-  @Input()
-  alert: IAlertProperties = new AlertProperties();
+  @Input() alert: IAlertProperties = new AlertProperties();
+  @Input() showBackButton = true;
   severity: string;
   constructor(
     private activatedRoute: ActivatedRoute,
