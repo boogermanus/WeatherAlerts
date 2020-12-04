@@ -15,14 +15,14 @@ import { MatSelectChange } from '@angular/material/select';
 export class AlertsComponent implements OnInit {
 
   private readonly EVENT = 'event';
-  private readonly ISSUER = 'issuer';
+  private readonly issuer = 'issuer';
   private readonly SEVERITY = 'severity';
   private readonly TYPE = 'type';
 
   public displayedColumns = ['event', 'senderName', 'sent', 'messageType', 'severity'];
-  // don't do this: filterOn: ['All', 'Event', 'Issuer', 'Sent', 'Severity', 'Type'];
+  // don't do this: filterOn: ['All', 'Event', 'issuer', 'Sent', 'Severity', 'Type'];
   // it is a valid statement, but the select will not load!
-  public filterOn = ['All', 'Event', 'Issuer', 'Type', 'Severity'];
+  public filterOn = ['All', 'Event', 'issuer', 'Type', 'Severity'];
   public filterOnType = 'all';
   public alerts: IAlertProperties[] = [];
   public loading = true;
@@ -62,7 +62,7 @@ export class AlertsComponent implements OnInit {
       case this.EVENT:
         this.dataSource.filterPredicate = this.filterByEvent;
         break;
-      case this.ISSUER:
+      case this.issuer:
         this.dataSource.filterPredicate = this.filterByIssure;
         break;
       case this.TYPE:
