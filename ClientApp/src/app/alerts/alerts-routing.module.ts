@@ -10,7 +10,7 @@ import { AuthorizeGuard } from 'src/api-authorization/authorize.guard';
 const routes: Routes = [
   { path: 'alerts/:id', component: AlertsViewComponent },
   { path: 'alerts', component: AlertsComponent },
-  { path: 'zones', component: ZonesComponent },
+  { path: 'zones', component: ZonesComponent, canActivate: [AuthorizeGuard] },
   { path: 'myzones', component: MyZonesComponent, canActivate: [AuthorizeGuard] }
 ];
 
