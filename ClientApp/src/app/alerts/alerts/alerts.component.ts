@@ -22,7 +22,7 @@ export class AlertsComponent implements OnInit {
   public displayedColumns = ['event', 'senderName', 'sent', 'messageType', 'severity'];
   // don't do this: filterOn: ['All', 'Event', 'issuer', 'Sent', 'Severity', 'Type'];
   // it is a valid statement, but the select will not load!
-  public filterOn = ['All', 'Event', 'issuer', 'Type', 'Severity'];
+  public filterOn = ['All', 'Event', 'Issuer', 'Type', 'Severity'];
   public filterOnType = 'all';
   public alerts: IAlertProperties[] = [];
   public loading = true;
