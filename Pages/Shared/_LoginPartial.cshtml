@@ -11,7 +11,8 @@
         returnUrl = query["returnUrl"];
     }
 }
-
+<!-- dirty hack to get this to work in production mode -->
+<link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/4.5.2/css/bootstrap.min.css">
 <ul class="navbar-nav">
     @if (SignInManager.IsSignedIn(User))
     {
