@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using WeatherAlertsApi.Core.Models;
 using WeatherAlertsApi.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,6 +23,9 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConnect
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));
+
+// builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+//     .AddEntityFrameworkStores<AppDbContext>();
 
 // builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
