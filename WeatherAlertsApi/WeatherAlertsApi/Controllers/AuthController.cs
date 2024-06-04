@@ -30,4 +30,38 @@ public class AuthController : Controller
         return BadRequest(ModelState);
 
     }
+
+    [AllowAnonymous]
+    [HttpPost("login")]
+    public async Task<IActionResult> Login([FromBody]LoginModel model)
+    {
+        var result = await _authService.Login(model);
+
+        if(result == null)
+        return Unauthorized();
+
+        return Ok(result);
+    }
+
+    [AllowAnonymous]
+    [HttpPost("decode")]
+    public IActionResult Decode([FromBody]AuthModel model)
+    {
+        return Ok(_authService.Decode(model));
+    }
+
+    [AllowAnonymous]
+    [HttpPost("validate")]
+    public IActionResult Validate([FromBody]AuthModel model)
+    {
+        try
+        {
+            return Ok(_authService.Validate(model));
+        }
+        catch(Exception)
+        {
+            return Ok(false);
+        }
+    }
+
 }

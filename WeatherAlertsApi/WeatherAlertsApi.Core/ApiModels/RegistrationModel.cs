@@ -23,7 +23,7 @@ public class RegistrationModel
         {
             UserName = Username,
             Name = Name,
-            Email = Username
+            Email = Username,
         };
     }
 }

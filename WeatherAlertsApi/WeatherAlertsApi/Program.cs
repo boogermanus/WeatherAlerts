@@ -4,6 +4,9 @@ using WeatherAlertsApi.Infrastrcture;
 using WeatherAlertsApi.Core.Interfaces;
 using WeatherAlertsApi.Core.Services;
 using WeatherAlertsApi.Core.Models;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -22,6 +25,19 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddAuthentication(options => {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+})
+.AddJwtBearer(options =>
+    options.TokenValidationParameters = new TokenValidationParameters
+    {
+        ValidateIssuer = false,
+        ValidateAudience = false,
+        ValidateIssuerSigningKey = true,
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+    });
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 
