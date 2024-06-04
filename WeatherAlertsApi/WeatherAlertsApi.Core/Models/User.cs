@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Identity;
 
-namespace GrocListApi.Core.Models
+namespace WeatherAlertsApi.Core.Models
 {
     public class User : IdentityUser
     {

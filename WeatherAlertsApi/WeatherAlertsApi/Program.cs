@@ -1,3 +1,6 @@
+using Microsoft.EntityFrameworkCore;
+using WeatherAlertsApi.Infrastructure;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -13,6 +16,13 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+
+builder.Services.AddDbContext<AppDbContext>(options =>
+    options.UseSqlite(connectionString));
+
+// builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 app.UseHttpsRedirection();
 
