@@ -231,3 +231,5 @@ _Pvt_Extensions
 .idea/
 
 app.production.db
+app.db-shm
+app.db-wal

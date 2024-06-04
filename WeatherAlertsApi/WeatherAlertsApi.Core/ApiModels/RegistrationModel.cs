@@ -12,6 +12,7 @@ public class RegistrationModel
     public string Password {get;set;}
 
     [Required]
+    [Display(Name = "Confirm Password")]
     [Compare("Password",ErrorMessage =  "Passwords do not match.")]
     public string ConfirmPassword {get;set;}
     public string Name {get;set;}
