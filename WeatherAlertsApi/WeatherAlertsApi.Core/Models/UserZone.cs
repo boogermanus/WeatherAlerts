@@ -1,10 +1,11 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.Interfaces;
 
 namespace WeatherAlertsApi.Core.Models;
 
-public class UserZone
+public class UserZone : IEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
