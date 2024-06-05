@@ -41,6 +41,7 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddTransient<IRestSharpService,RestSharpService>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

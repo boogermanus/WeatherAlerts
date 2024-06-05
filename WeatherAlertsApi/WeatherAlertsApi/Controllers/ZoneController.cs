@@ -1,8 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using RestSharp;
 using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.Interfaces;
 
 namespace WeatherAlertsApi.Controllers;
 
@@ -10,18 +8,20 @@ namespace WeatherAlertsApi.Controllers;
 [Route("api/[controller]")]
 public class ZoneController : Controller
 {
+    private readonly IRestSharpService _restSharpService;
+
+    public ZoneController(IRestSharpService service)
+    {
+        _restSharpService = service;
+    }
+
     [HttpGet]
     public async Task<Zones> GetByState([FromQuery]string state)
     {
-        var options = new RestClientOptions("https://api.weather.gov");
-        var client = new RestClient(options);
-        var request = new RestRequest("zones")
-        .AddQueryParameter("area", state)
-        .AddQueryParameter("type","county");
-
-        var response = await client.GetAsync(request);
-        var zones = JsonConvert.DeserializeObject<Zones>(response.Content);
-
-        return zones;
+        return await _restSharpService.Get<Zones>("https://api.weather.gov", "zones", new Dictionary<string, string>
+        {
+            {"area", state},
+            {"type", "county"}
+        });
     }
 }
