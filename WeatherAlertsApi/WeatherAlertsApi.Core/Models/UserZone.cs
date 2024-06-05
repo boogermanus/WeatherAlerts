@@ -23,6 +23,7 @@ public class UserZone : IEntity
         return new UserZoneModel
         {
             Id = Id,
+            ZoneId = ZoneId,
             CreateDate = CreateDate,
             Visible = Visible,
             UserId = UserId,
