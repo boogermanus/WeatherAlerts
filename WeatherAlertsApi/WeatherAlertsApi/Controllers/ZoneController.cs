@@ -14,7 +14,7 @@ public class ZoneController : Controller
         _zoneService = service;
     }
 
-    [HttpGet]
+    [HttpGet("GetZoneByState")]
     public async Task<IActionResult> GetByState([FromQuery]string state)
     {
         var result = await _zoneService.GetByState(state);
