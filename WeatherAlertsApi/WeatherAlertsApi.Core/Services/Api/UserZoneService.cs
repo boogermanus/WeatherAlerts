@@ -1,8 +1,7 @@
 using WeatherAlertsApi.Core.ApiModels.Api;
-using WeatherAlertsApi.Core.Interfaces;
 using WeatherAlertsApi.Core.Interfaces.Api;
 
-namespace WeatherAlertsApi.Core.Services;
+namespace WeatherAlertsApi.Core.Services.Api;
 
 public class UserZoneService : IUserZoneService
 {

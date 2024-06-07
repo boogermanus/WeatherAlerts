@@ -2,7 +2,7 @@ using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using WeatherAlertsApi.Core.Interfaces.Api;
 
-namespace WeatherAlertsApi.Core.Services;
+namespace WeatherAlertsApi.Core.Services.Api;
 
 public class UserService : IUserService
 {

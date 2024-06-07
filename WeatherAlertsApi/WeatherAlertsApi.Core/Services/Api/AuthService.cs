@@ -9,7 +9,7 @@ using WeatherAlertsApi.Core.ApiModels.Api;
 using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Models;
 
-namespace WeatherAlertsApi.Core.Services;
+namespace WeatherAlertsApi.Core.Services.Api;
 
 public class AuthService : IAuthService
 {

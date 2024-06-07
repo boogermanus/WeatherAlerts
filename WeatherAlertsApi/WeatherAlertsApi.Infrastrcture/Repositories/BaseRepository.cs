@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Conventions;
 using WeatherAlertsApi.Core.Interfaces;
 
 namespace WeatherAlertsApi.Infrastrcture.Repositories;
