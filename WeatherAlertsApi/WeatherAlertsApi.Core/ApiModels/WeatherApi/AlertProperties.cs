@@ -22,4 +22,5 @@ public class AlertProperties
     public DateTime ends { get; set; }
     public string[]? areas { get; set; }
     public string? zoneId { get; set; }
+// }
 }

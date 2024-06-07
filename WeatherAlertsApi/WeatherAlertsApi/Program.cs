@@ -61,6 +61,7 @@ builder.Services.AddScoped<IUserZoneRepository, UserZoneRepository>();
 builder.Services.AddScoped<IUserZoneService, UserZoneService>();
 builder.Services.AddTransient<IRestSharpService,RestSharpService>();
 builder.Services.AddScoped<IZoneService, ZoneService>();
+builder.Services.AddScoped<IAlertsService, AlertService>();
 
 var app = builder.Build();
 
