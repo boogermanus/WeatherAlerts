@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using WeatherAlertsApi.Core.ApiModels;
 using WeatherAlertsApi.Core.Interfaces;
 
 namespace WeatherAlertsApi.Controllers;
@@ -8,20 +7,17 @@ namespace WeatherAlertsApi.Controllers;
 [Route("api/[controller]")]
 public class ZoneController : Controller
 {
-    private readonly IRestSharpService _restSharpService;
+    private readonly IZoneService _zoneService;
 
-    public ZoneController(IRestSharpService service)
+    public ZoneController(IZoneService service)
     {
-        _restSharpService = service;
+        _zoneService = service;
     }
 
     [HttpGet]
-    public async Task<Zones> GetByState([FromQuery]string state)
+    public async Task<IActionResult> GetByState([FromQuery]string state)
     {
-        return await _restSharpService.Get<Zones>("https://api.weather.gov", "zones", new Dictionary<string, string>
-        {
-            {"area", state},
-            {"type", "county"}
-        });
+        var result = await _zoneService.GetByState(state);
+        return Ok(result);
     }
 }

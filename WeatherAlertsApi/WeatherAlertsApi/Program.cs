@@ -28,7 +28,8 @@ builder.Services.AddSwaggerGen(options =>
     options.OperationFilter<AddAuthHeaderOperationFilter>();
 });
 
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
+    throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlite(connectionString));
@@ -50,13 +51,14 @@ builder.Services.AddAuthentication(options => {
         ValidateIssuerSigningKey = true,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
     });
-builder.Services.AddControllers();
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IUserZoneRepository, UserZoneRepository>();
 builder.Services.AddScoped<IUserZoneService, UserZoneService>();
 builder.Services.AddTransient<IRestSharpService,RestSharpService>();
+builder.Services.AddScoped<IZoneService, ZoneService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
