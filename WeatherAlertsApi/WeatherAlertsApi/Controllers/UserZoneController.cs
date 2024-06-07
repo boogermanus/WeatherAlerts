@@ -1,10 +1,8 @@
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.ApiModels.Api;
 using WeatherAlertsApi.Core.Interfaces;
-using WeatherAlertsApi.Core.Models;
-using WeatherAlertsApi.Infrastrcture;
 
 namespace WeatherAlertsApi.Controllers;
 

@@ -1,7 +1,6 @@
-using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
-namespace WeatherAlertsApi.Core.ApiModels;
+namespace WeatherAlertsApi.Core.ApiModels.Api;
 
 public class LoginModel
 {

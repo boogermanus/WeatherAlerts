@@ -1,6 +1,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.ApiModels.Api;
 using WeatherAlertsApi.Core.Interfaces;
 
 namespace WeatherAlertsApi.Core.Models;

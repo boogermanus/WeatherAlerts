@@ -1,6 +1,6 @@
 using System.IdentityModel.Tokens.Jwt;
 using Microsoft.AspNetCore.Identity;
-using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.ApiModels.Api;
 
 namespace WeatherAlertsApi.Core.Interfaces;
 

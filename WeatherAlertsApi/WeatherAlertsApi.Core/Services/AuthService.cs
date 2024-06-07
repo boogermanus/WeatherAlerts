@@ -5,7 +5,7 @@ using System.Text;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
-using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.ApiModels.Api;
 using WeatherAlertsApi.Core.Interfaces;
 using WeatherAlertsApi.Core.Models;
 
@@ -20,7 +20,7 @@ public class AuthService : IAuthService
     {
         _userManager = userManager;
         _configuration = configuration;
-        _key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"]);
+        _key = Encoding.ASCII.GetBytes(_configuration["Jwt:Key"] ?? string.Empty);
     }
 
     public async Task<IdentityResult> Register(RegistrationModel model)

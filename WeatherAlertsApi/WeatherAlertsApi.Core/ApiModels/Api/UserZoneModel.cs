@@ -1,6 +1,6 @@
 using WeatherAlertsApi.Core.Models;
 
-namespace WeatherAlertsApi.Core.ApiModels;
+namespace WeatherAlertsApi.Core.ApiModels.Api;
 
 public class UserZoneModel
 {

@@ -1,4 +1,4 @@
-namespace WeatherAlertsApi.Core.ApiModels;
+namespace WeatherAlertsApi.Core.ApiModels.Api;
 
 public class AuthModel
 {

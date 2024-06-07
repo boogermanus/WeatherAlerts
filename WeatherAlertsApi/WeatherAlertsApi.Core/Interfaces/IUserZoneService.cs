@@ -1,4 +1,4 @@
-using WeatherAlertsApi.Core.ApiModels;
+using WeatherAlertsApi.Core.ApiModels.Api;
 
 namespace WeatherAlertsApi.Core.Interfaces;
 
