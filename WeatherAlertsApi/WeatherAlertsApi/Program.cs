@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using WeatherAlertsApi.Infrastrcture;
 using WeatherAlertsApi.Core.Interfaces;
 using WeatherAlertsApi.Core.Services;
@@ -9,7 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WeatherAlertsApi.Infrastrcture.Repositories;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.SwaggerGen;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -49,7 +48,7 @@ builder.Services.AddAuthentication(options => {
         ValidateIssuer = false,
         ValidateAudience = false,
         ValidateIssuerSigningKey = true,
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"] ?? string.Empty))
     });
 builder.Services.AddControllers();
 
@@ -74,21 +73,3 @@ app.UseRouting();
 app.UseAuthorization();
 app.MapControllers();
 app.Run();
-
-public class AddAuthHeaderOperationFilter : IOperationFilter
-    {
-
-        public void Apply(OpenApiOperation operation, OperationFilterContext context)
-        {
-               if (operation.Security == null)
-                    operation.Security = new List<OpenApiSecurityRequirement>();
-
-
-                var scheme = new OpenApiSecurityScheme { Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "bearer" } };
-                operation.Security.Add(new OpenApiSecurityRequirement
-                {
-                    [scheme] = new List<string>()
-                });
-        }
-    }
-
