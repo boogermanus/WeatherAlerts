@@ -31,7 +31,7 @@ public class UserZoneService : IUserZoneService
         return result.Select(ur => ur.ToApiModel());
     }
 
-    public async Task<IEnumerable<UserZoneModel>> GetUserZones(string userId)
+    public async Task<IEnumerable<UserZoneModel>> GetUserZones(string? userId)
     {
         if(string.IsNullOrEmpty(userId))
             userId = _userService.CurrentUserId;
