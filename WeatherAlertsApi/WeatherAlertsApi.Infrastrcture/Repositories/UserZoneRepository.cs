@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WeatherAlertsApi.Core.Interfaces;
+using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Models;
 
 namespace WeatherAlertsApi.Infrastrcture.Repositories;

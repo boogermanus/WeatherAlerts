@@ -1,6 +1,6 @@
 using WeatherAlertsApi.Core.Models;
 
-namespace WeatherAlertsApi.Core.Interfaces;
+namespace WeatherAlertsApi.Core.Interfaces.Api;
 
 public interface IUserZoneRepository : IBaseRepository<UserZone>
 {
