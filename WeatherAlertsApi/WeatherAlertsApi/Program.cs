@@ -8,6 +8,7 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WeatherAlertsApi.Infrastrcture.Repositories;
 using Microsoft.OpenApi.Models;
+using WeatherAlertsApi.Core.Interfaces.Api;
 
 var builder = WebApplication.CreateBuilder(args);
 

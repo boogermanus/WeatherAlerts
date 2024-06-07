@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using WeatherAlertsApi.Core.ApiModels.Api;
-using WeatherAlertsApi.Core.Interfaces;
+using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Models;
 
 namespace WeatherAlertsApi.Core.Services;

@@ -28,7 +28,7 @@ public class UserZonesController : Controller
     [HttpGet("GetUserZones")]
     public async Task<IActionResult> GetUserZones([FromQuery]string? userId = null)
     {
-        var result = await _userZoneService.GetUserZones(userId);
+        var result = await _userZoneService.GetUserZones(userId ?? string.Empty);
         return Ok(result);
     }
 
