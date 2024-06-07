@@ -34,7 +34,7 @@ public class UserZonesController : Controller
         return Ok(result);
     }
 
-    [HttpPost]
+    [HttpPost("AddUserZone")]
     public async Task<IActionResult> AddUserZone(UserZoneModel model)
     {
         var result = await _userZoneService.AddUserZone(model);
