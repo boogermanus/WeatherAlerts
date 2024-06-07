@@ -1,5 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
-using WeatherAlertsApi.Core.Interfaces;
+using WeatherAlertsApi.Core.Interfaces.WeatherApi;
 
 namespace WeatherAlertsApi.Controllers;
 

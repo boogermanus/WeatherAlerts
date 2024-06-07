@@ -9,6 +9,7 @@ using System.Text;
 using WeatherAlertsApi.Infrastrcture.Repositories;
 using Microsoft.OpenApi.Models;
 using WeatherAlertsApi.Core.Interfaces.Api;
+using WeatherAlertsApi.Core.Interfaces.WeatherApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
