@@ -7,6 +7,7 @@ using WeatherAlertsApi.Core.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using WeatherAlertsApi.Infrastrcture.Repositories;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -41,6 +42,8 @@ builder.Services.AddAuthentication(options => {
 
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
+builder.Services.AddScoped<IUserZoneRepository, UserZoneRepository>();
+builder.Services.AddScoped<IUserZoneService, UserZoneService>();
 builder.Services.AddTransient<IRestSharpService,RestSharpService>();
 var app = builder.Build();
 

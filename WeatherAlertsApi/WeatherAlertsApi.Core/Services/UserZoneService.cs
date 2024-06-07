@@ -14,6 +14,17 @@ public class UserZoneService : IUserZoneService
         _userService = userService;
     }
 
+    public async Task<UserZoneModel> AddUserZone(UserZoneModel userZoneModel)
+    {
+        var model = userZoneModel.ToDomainModel();
+        model.CreateDate = DateTime.Now;
+        model.Visible = true;
+
+        var result = await _userZoneRepository.Add(model);
+
+        return result.ToApiModel();
+    }
+
     public async Task<IEnumerable<UserZoneModel>> GetAllUserZones()
     {
         var result = await _userZoneRepository.GetAll();

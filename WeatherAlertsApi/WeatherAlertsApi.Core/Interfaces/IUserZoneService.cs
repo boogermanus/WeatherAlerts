@@ -6,4 +6,6 @@ public interface IUserZoneService
 {
     Task<IEnumerable<UserZoneModel>> GetUserZones(string userId);
     Task<IEnumerable<UserZoneModel>> GetAllUserZones();
+    Task<UserZoneModel> AddUserZone(UserZoneModel userZone);
+    
 }
