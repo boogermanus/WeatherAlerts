@@ -12,8 +12,8 @@ public class LoginModel
     [Required]
     public string Password { get; set; }
 
-    [Required]
-    [Display(Name = "Confirm Password")]
-    [Compare("Password", ErrorMessage = "Passwords do not match.")]
-    public string ConfirmPassword { get; set; }
+    // [Required]
+    // [Display(Name = "Confirm Password")]
+    // [Compare("Password", ErrorMessage = "Passwords do not match.")]
+    // public string ConfirmPassword { get; set; }
 }

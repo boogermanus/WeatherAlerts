@@ -80,7 +80,7 @@ public class AuthService : IAuthService
     {
         var handler = new JwtSecurityTokenHandler();
 
-        var token = handler.ReadJwtToken(model.Token);
+        var token = handler.ReadJwtToken(model.access_token);
 
         return token;
     }
@@ -97,7 +97,7 @@ public class AuthService : IAuthService
             IssuerSigningKey = new SymmetricSecurityKey(_key)
         };
 
-        var validated = tokenHandler.ValidateToken(model.Token, validationParameters, out var tokenSecure);
+        var validated = tokenHandler.ValidateToken(model.access_token, validationParameters, out var tokenSecure);
 
         return validated != null && tokenSecure is JwtSecurityToken;
     }
