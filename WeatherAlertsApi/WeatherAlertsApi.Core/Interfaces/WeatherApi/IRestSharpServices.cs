@@ -1,4 +1,4 @@
-namespace WeatherAlertsApi.Core.Interfaces;
+namespace WeatherAlertsApi.Core.Interfaces.WeatherApi;
 
 public interface IRestSharpService
 {

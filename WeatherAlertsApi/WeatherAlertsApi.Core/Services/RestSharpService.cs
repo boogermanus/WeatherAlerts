@@ -1,5 +1,5 @@
 using RestSharp;
-using WeatherAlertsApi.Core.Interfaces;
+using WeatherAlertsApi.Core.Interfaces.WeatherApi;
 
 namespace WeatherAlertsApi.Core.Services;
 
