@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using WeatherAlertsApi.Infrastrcture;
-using WeatherAlertsApi.Core.Interfaces;
 using WeatherAlertsApi.Core.Services;
 using WeatherAlertsApi.Core.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -11,6 +10,7 @@ using Microsoft.OpenApi.Models;
 using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Interfaces.WeatherApi;
 using WeatherAlertsApi.Core.Services.Api;
+using WeatherAlertsApi.Core.Services.WeatherApi;
 
 var builder = WebApplication.CreateBuilder(args);
 

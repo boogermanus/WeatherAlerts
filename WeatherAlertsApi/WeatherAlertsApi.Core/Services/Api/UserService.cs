@@ -14,5 +14,5 @@ public class UserService : IUserService
     }
     public ClaimsPrincipal User => _context.HttpContext.User;
 
-    public string CurrentUserId => User.FindFirstValue(ClaimTypes.Name);
+    public string CurrentUserId => User.FindFirstValue(ClaimTypes.Name) ?? string.Empty;
 }
