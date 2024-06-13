@@ -12,6 +12,9 @@ public class AlertService : IAlertsService
     }
     public async Task<Alerts> GetActiveAlerts()
     {
-        return await _restSharpService.Get<Alerts>("https://api.weather.gov/", "alerts/active");
+        return await _restSharpService.Get<Alerts>(
+            "https://api.weather.gov/",
+            "alerts/active",
+            new Dictionary<string, string> { { "status", "actual" } });
     }
 }
