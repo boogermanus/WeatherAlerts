@@ -27,17 +27,18 @@ export class AlertViewComponent {
     private alertService: AlertService,
     private router: Router) { }
 
-  async ngOnInit() {
+    ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params[this.ID];
 
     this.alertService.getAlertById(id)
       .subscribe(
         {
-          next: (data) => this.alert = this.alertService.mapAlertResponseToAlertProperties(data),
+          next: (data) => {
+            this.alert = this.alertService.mapAlertResponseToAlertProperties(data);
+            this.severity = SeverityConstants.getSeverityClass(this.alert.severity);
+          },
           error: (error) => console.log(error)
         });
-
-    this.severity = SeverityConstants.getSeverityClass(this.alert.severity);
   }
 
   back(): void {
