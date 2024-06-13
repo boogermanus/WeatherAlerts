@@ -3,7 +3,7 @@
 </ng-template>
 
 <div [hidden]="loading">
-    <!-- <mat-form-field style="margin-right: 20px;">
+    <mat-form-field style="margin-right: 20px;">
         <mat-label>Filter On</mat-label>
         <mat-select value="All" (selectionChange)="filterOnChanged($event)">
             <mat-option *ngFor="let option of filterOn" [value]="option">
@@ -14,7 +14,7 @@
     <mat-form-field>
         <mat-label>Filter By</mat-label>
         <input matInput type="text" (keyup)="filterOnKeyUp($event)">
-    </mat-form-field> -->
+    </mat-form-field>
     <div>
         <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 

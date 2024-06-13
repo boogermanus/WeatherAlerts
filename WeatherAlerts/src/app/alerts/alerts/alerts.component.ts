@@ -6,12 +6,12 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { OnInit } from '@angular/core';
 import { IAlertsResponse } from '../../interfaces/ialerts-response';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatSelectModule } from '@angular/material/select';
+import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { MatInputModule } from '@angular/material/input';
 @Component({
   selector: 'app-alerts',
   standalone: true,
@@ -24,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatPaginatorModule,
     CommonModule, 
     MatSortModule,
-    HttpClientModule],
+    MatInputModule
+  ],
   templateUrl: './alerts.component.html',
   styleUrl: './alerts.component.css'
 })
@@ -79,5 +80,47 @@ export class AlertsComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.originalFilterPredicate = this.dataSource.filterPredicate;
+  }
+
+  public filterOnChanged(event: MatSelectChange): void {
+    // force the value to string type so we can switch;
+    const value: string = event.value;
+
+    switch (value.toLowerCase()) {
+      case this.EVENT:
+        this.dataSource.filterPredicate = this.filterByEvent;
+        break;
+      case this.issuer:
+        this.dataSource.filterPredicate = this.filterByIssure;
+        break;
+      case this.TYPE:
+        this.dataSource.filterPredicate = this.filterByType;
+        break;
+      case this.SEVERITY:
+        this.dataSource.filterPredicate = this.filterBySeverity;
+        break;
+      default:
+        this.dataSource.filterPredicate = this.originalFilterPredicate;
+    }
+  }
+
+  public filterOnKeyUp(event: any): void {
+    this.dataSource.filter = event.target.value;
+  }
+
+  private filterByEvent(data: IAlertProperties, filter: string): boolean {
+    return !filter || data.event.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  private filterByIssure(data: IAlertProperties, filter: string): boolean {
+    return !filter || data.senderName.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  private filterByType(data: IAlertProperties, filter: string): boolean {
+    return !filter || data.messageType.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  private filterBySeverity(data: IAlertProperties, filter: string): boolean {
+    return !filter || data.severity.toLowerCase().includes(filter.toLowerCase());
   }
 }
