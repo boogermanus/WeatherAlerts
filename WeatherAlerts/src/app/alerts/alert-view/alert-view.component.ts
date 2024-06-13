@@ -5,13 +5,21 @@ import { AlertService } from '../../services/alert.service';
 import { AlertProperties } from '../../models/alert-properties';
 import { SeverityConstants } from '../../models/severity-constants';
 import { MatCardModule } from '@angular/material/card'
-import { MatTooltipModule} from '@angular/material/tooltip';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
+import { MatButtonModule } from '@angular/material/button';
+
 @Component({
   selector: 'app-alert-view',
   standalone: true,
-  imports: [MatCardModule,MatTooltipModule, MatIconModule, CommonModule],
+  imports: [
+    MatCardModule,
+    MatTooltipModule,
+    MatIconModule,
+    MatButtonModule,
+    CommonModule
+  ],
   templateUrl: './alert-view.component.html',
   styleUrl: './alert-view.component.css'
 })
@@ -27,7 +35,7 @@ export class AlertViewComponent {
     private alertService: AlertService,
     private router: Router) { }
 
-    ngOnInit(): void {
+  ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params[this.ID];
 
     this.alertService.getAlertById(id)
