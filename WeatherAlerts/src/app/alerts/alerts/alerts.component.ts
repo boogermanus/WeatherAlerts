@@ -57,14 +57,6 @@ export class AlertsComponent implements OnInit {
   }
 
   public ngOnInit(): void {
-    // this.alertsService.getActiveAlerts()
-    //   .then((data: IAlertsResponse) => this.setupDataSource(data))
-    //   .catch((reason) => {
-    //     console.log(reason);
-    //     this.loading = false;
-    //     this.errorLoading = true;
-    //   });
-
     this.alertsService.getActiveAlerts()
       .subscribe(
         {
