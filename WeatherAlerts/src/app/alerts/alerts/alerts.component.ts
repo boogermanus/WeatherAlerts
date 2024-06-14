@@ -33,20 +33,20 @@ export class AlertsComponent implements OnInit {
 
 
 
-  private readonly EVENT = 'event';
-  private readonly issuer = 'issuer';
-  private readonly SEVERITY = 'severity';
-  private readonly TYPE = 'type';
+  private readonly EVENT: string = 'event';
+  private readonly issuer: string = 'issuer';
+  private readonly SEVERITY: string = 'severity';
+  private readonly TYPE: string = 'type';
 
-  public displayedColumns = ['event', 'senderName', 'sent', 'messageType', 'severity'];
+  public displayedColumns: string[] = ['event', 'senderName', 'sent', 'messageType', 'severity'];
   // don't do this: filterOn: ['All', 'Event', 'issuer', 'Sent', 'Severity', 'Type'];
   // it is a valid statement, but the select will not load!
-  public filterOn = ['All', 'Event', 'Issuer', 'Type', 'Severity'];
-  public filterOnType = 'all';
+  public filterOn: string[] = ['All', 'Event', 'Issuer', 'Type', 'Severity'];
+  public filterOnType: string = 'all';
   public alerts: IAlertProperties[] = [];
-  public loading = true;
+  public loading: boolean = true;
   public dataSource: MatTableDataSource<IAlertProperties>;
-  public errorLoading = false;
+  public errorLoading: boolean = false;
   private originalFilterPredicate: ((data: IAlertProperties, filter: string) => boolean) | undefined;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;

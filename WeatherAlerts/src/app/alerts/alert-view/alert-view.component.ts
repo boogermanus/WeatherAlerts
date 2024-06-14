@@ -24,12 +24,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './alert-view.component.css'
 })
 export class AlertViewComponent {
-  readonly ID = 'id';
+  private readonly ID: string = 'id';
   // replace this def with the other and get an error.
   // alert: IAlertProperties
   @Input() alert: IAlertProperties = new AlertProperties();
   @Input() showBackButton = true;
-  severity: string;
+  public severity: string;
+  
   constructor(
     private activatedRoute: ActivatedRoute,
     private alertService: AlertService,

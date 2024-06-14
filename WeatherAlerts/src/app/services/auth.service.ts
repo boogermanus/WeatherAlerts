@@ -11,7 +11,7 @@ import { ApiConfig } from '../config';
 })
 export class AuthService {
 
-  private readonly TOKEN: string="token";
+  private readonly TOKEN: string = "token";
   constructor(
     private readonly httpClient: HttpClient,
     private readonly jwtService: JwtHelperService) { }
@@ -30,7 +30,7 @@ export class AuthService {
     return !this.jwtService.isTokenExpired(token);
   }
 
-  public userId() : string {
+  public userId(): string {
     const token = localStorage.getItem(this.TOKEN);
     const decode: any = this.jwtService.decodeToken(token);
     return decode.nameid;

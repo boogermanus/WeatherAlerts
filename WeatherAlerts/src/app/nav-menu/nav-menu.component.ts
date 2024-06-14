@@ -10,7 +10,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './nav-menu.component.css'
 })
 export class NavMenuComponent {
-  isExpanded = false;
+  isExpanded: boolean = false;
 
   collapse() {
     this.isExpanded = false;

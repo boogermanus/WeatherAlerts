@@ -11,20 +11,20 @@ import { IAlertResponse } from '../interfaces/ialert-response';
   providedIn: 'root'
 })
 export class AlertService {
-  private readonly STATUS = 'status';
-  private readonly STATUS_ACTUAL = 'actual';
-  private readonly CHOP_LENGTH = 3;
+  private readonly STATUS: string = 'status';
+  private readonly STATUS_ACTUAL: string = 'actual';
+  private readonly CHOP_LENGTH: number = 3;
 
   constructor(private apiService: ApiService) { }
 
   public getActiveAlerts(): Observable<IAlertsResponse> {
     const params = new HttpParams()
-    .append(this.STATUS, this.STATUS_ACTUAL);
+      .append(this.STATUS, this.STATUS_ACTUAL);
 
     return this.apiService.activeAlerts(params);
   }
 
-  public getAlertById(id: string) : Observable<IAlertResponse> {
+  public getAlertById(id: string): Observable<IAlertResponse> {
     return this.apiService.alert(id);
   }
 
