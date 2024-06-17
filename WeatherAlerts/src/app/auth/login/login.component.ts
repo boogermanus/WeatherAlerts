@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup
   public loginError = false;
+  public otherLoginError = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -45,7 +46,10 @@ export class LoginComponent implements OnInit {
           error: (error) => {
             if (error.status === 401) {
               this.loginError = true;
+              this.otherLoginError = false;
             } else {
+              this.otherLoginError = true;
+              this.loginError = false;
               console.log(error);
             }
       }});
