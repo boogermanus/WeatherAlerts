@@ -24,7 +24,7 @@ export class LoginComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly authService: AuthService) {
     this.formLogin = this.formBuilder.group({
-      email: ['', Validators.required],
+      email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
     });
 

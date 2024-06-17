@@ -1,10 +1,11 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthModel } from '../models/auth-model';
 import { BehaviorSubject, Observable, map, of, pipe, switchMap } from 'rxjs';
 import { IAuthResponse } from '../interfaces/iauth-response';
 import { ApiConfig } from '../config';
+import { RegisterModel } from '../models/register-model';
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,10 @@ export class AuthService {
   
   public get isAuthenticated(): Observable<boolean> {
     return this.authenticated.asObservable();
+  }
+
+  public register(model: RegisterModel): Observable<HttpResponse<any>> {
+    return this.httpClient.post<HttpResponse<any>>(`${ApiConfig.authApi}/register`, model);
   }
 
   public userId(): string {

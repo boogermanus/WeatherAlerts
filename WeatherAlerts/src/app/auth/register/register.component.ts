@@ -2,6 +2,8 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { RegisterModel } from '../../models/register-model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,8 @@ import { AuthService } from '../../services/auth.service';
   imports: [
     FormsModule,
     ReactiveFormsModule,
-    CommonModule
+    CommonModule,
+    RouterModule
   ],
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
@@ -53,7 +56,18 @@ export class RegisterComponent {
   }
 
   public submit(): void {
-
+    this.authService.register(new RegisterModel(this.emailControl.value, this.passwordControl.value, this.confirmPasswordControl.value))
+      .subscribe({
+        next: (data) => {
+          if(data.ok) {
+            this.registrationSuccessful = true;
+          }
+        },
+        error: (error) => {
+          this.unableToRegister = true;
+          console.log(error);
+        }
+      });
   }
   
   public isControlInvalid(control: AbstractControl, error: string = 'required'): boolean {
