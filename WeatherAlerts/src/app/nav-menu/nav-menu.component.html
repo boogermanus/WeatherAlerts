@@ -21,8 +21,11 @@
             <li class="nav-item">
               <a class="nav-link" [routerLink]="['/myzones']" [routerLinkActive]="['link-active']">My Zones</a>
             </li>
-            <li class="nav-item">
+            <li class="nav-item" *ngIf="!(isAuthenticated | async)">
               <a class="nav-link" [routerLink]="['/auth/login']" [routerLinkActive]="['link-active']">Login / Register</a>
+            </li>
+            <li class="nav-item" *ngIf="(isAuthenticated | async)">
+              <a class="nav-link" (click)="logout()" [routerLink]="['/']">Logout</a>
             </li>
           </ul>
         </div>

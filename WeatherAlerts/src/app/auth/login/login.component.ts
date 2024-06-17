@@ -15,6 +15,7 @@ import { AuthModel } from '../../models/auth-model';
 export class LoginComponent implements OnInit {
 
   public formLogin: FormGroup
+  public loginError = false;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -34,16 +35,21 @@ export class LoginComponent implements OnInit {
 
   public submit(): void { 
     if (this.formLogin.controls['email'].valid && this.formLogin.controls['password'].valid) {
-      // this.authService.login(
-      //   new AuthModel(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value))
-      //   .subscribe(response => this.setSession(response), error => {
-      //   if (error.status === 401) {
-      //     this.loginError = true;
-      //   } else {
-      //     console.log(error);
-      //   }
-      // });
-      console.log("login");
+      this.authService.login(
+        new AuthModel(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value))
+        .subscribe({ 
+          next: (response) => { 
+            this.authService.authenticate(response.access_token);
+            this.router.navigate(['/']);
+          },
+          error: (error) => {
+            if (error.status === 401) {
+              this.loginError = true;
+            } else {
+              console.log(error);
+            }
+      }});
+      
     }
   }
 
@@ -51,11 +57,4 @@ export class LoginComponent implements OnInit {
     return this.formLogin.controls[pControlName].touched
       && this.formLogin.controls[pControlName].hasError('required');
   }
-
-  private setSession(authResult: any) {
-    localStorage.setItem('token', authResult.token);
-    //this.loginError = false;
-    this.router.navigate(['/']);
-  }
-
 }

@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { AuthModel } from '../models/auth-model';
-import { Observable } from 'rxjs';
+import { BehaviorSubject, Observable, map, of, pipe, switchMap } from 'rxjs';
 import { IAuthResponse } from '../interfaces/iauth-response';
 import { ApiConfig } from '../config';
 
@@ -12,6 +12,7 @@ import { ApiConfig } from '../config';
 export class AuthService {
 
   private readonly TOKEN: string = "token";
+  private authenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(
     private readonly httpClient: HttpClient,
     private readonly jwtService: JwtHelperService) { }
@@ -22,12 +23,15 @@ export class AuthService {
 
   public authenticate(token: string): void {
     localStorage.setItem(this.TOKEN, token)
+    this.authenticated.next(true);
   }
-
-  public isAuthenticated(): boolean {
-    const token = localStorage.getItem(this.TOKEN);
-    // return false if token is expired.
-    return !this.jwtService.isTokenExpired(token);
+  
+  public logout(): void {
+    localStorage.removeItem(this.TOKEN);
+    this.authenticated.next(false);
+  }
+  public get isAuthenticated(): Observable<boolean> {
+    return this.authenticated.asObservable();
   }
 
   public userId(): string {
