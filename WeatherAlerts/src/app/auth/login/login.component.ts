@@ -2,11 +2,13 @@ import { CommonModule } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
+import { AuthModel } from '../../models/auth-model';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [FormsModule,RouterModule,ReactiveFormsModule, CommonModule],
+  imports: [FormsModule, RouterModule, ReactiveFormsModule, CommonModule],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
@@ -17,23 +19,43 @@ export class LoginComponent implements OnInit {
   constructor(
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
-    private readonly route: ActivatedRoute) {
-      this.formLogin = this.formBuilder.group({
-        email: ['', Validators.required],
-        password: ['',Validators.required]
-      });
+    private readonly route: ActivatedRoute,
+    private readonly authService: AuthService) {
+    this.formLogin = this.formBuilder.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
 
-    }
+
+  }
   ngOnInit(): void {
-    
+
   }
 
-  public submit() : void {}
-  public register() : void {}
+  public submit(): void { 
+    if (this.formLogin.controls['email'].valid && this.formLogin.controls['password'].valid) {
+      // this.authService.login(
+      //   new AuthModel(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value))
+      //   .subscribe(response => this.setSession(response), error => {
+      //   if (error.status === 401) {
+      //     this.loginError = true;
+      //   } else {
+      //     console.log(error);
+      //   }
+      // });
+      console.log("login");
+    }
+  }
 
   public getError(pControlName: string) {
     return this.formLogin.controls[pControlName].touched
-    && this.formLogin.controls[pControlName].hasError('required');
+      && this.formLogin.controls[pControlName].hasError('required');
+  }
+
+  private setSession(authResult: any) {
+    localStorage.setItem('token', authResult.token);
+    //this.loginError = false;
+    this.router.navigate(['/']);
   }
 
 }
