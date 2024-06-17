@@ -43,18 +43,21 @@ export class LoginComponent implements OnInit {
             this.authService.authenticate(response.access_token);
             this.router.navigate(['/']);
           },
-          error: (error) => {
-            if (error.status === 401) {
-              this.loginError = true;
-              this.otherLoginError = false;
-            } else {
-              this.otherLoginError = true;
-              this.loginError = false;
-              console.log(error);
-            }
-      }});
+          error: (error) => this.handleLoginError(error)
+        });
       
     }
+  }
+
+  private handleLoginError(error: any) {
+    if (error.status === 401) {
+      this.loginError = true;
+      this.otherLoginError = false;
+    } else {
+      this.otherLoginError = true;
+      this.loginError = false;
+    }
+    console.log(error);
   }
 
   public getError(pControlName: string) {
