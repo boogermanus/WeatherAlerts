@@ -64,4 +64,8 @@ export class LoginComponent implements OnInit {
     return this.formLogin.controls[pControlName].touched
       && this.formLogin.controls[pControlName].hasError('required');
   }
+
+  public register(): void {
+    this.router.navigate(['auth/register']);
+  }
 }
