@@ -7,7 +7,7 @@ import { CommonModule } from '@angular/common';
 import { ZonesService } from '../../services/zones.service';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatAutocompleteModule } from '@angular/material/autocomplete';
 import { ZonePipe } from "../pipes/zone.pipe";
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -25,23 +25,23 @@ function validateState(control: FormControl): ValidationErrors {
 }
 
 @Component({
-    selector: 'app-zones',
-    standalone: true,
-    templateUrl: './zones.component.html',
-    styleUrl: './zones.component.css',
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        CommonModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        ZonePipe,
-        MatIconModule,
-        MatProgressSpinnerModule,
-        MatButtonModule,
-        MatTooltipModule
-    ]
+  selector: 'app-zones',
+  standalone: true,
+  templateUrl: './zones.component.html',
+  styleUrl: './zones.component.css',
+  imports: [
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    ZonePipe,
+    MatIconModule,
+    MatProgressSpinnerModule,
+    MatButtonModule,
+    MatTooltipModule
+  ]
 })
 export class ZonesComponent implements OnInit {
   statesControl = new FormControl<any>('', validateState);

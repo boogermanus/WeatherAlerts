@@ -5,10 +5,10 @@ import { inject } from '@angular/core';
 export const authGuard: CanActivateFn = (route, state) => {
   const authService: AuthService = inject(AuthService);
   const router: Router = inject(Router);
-  
+
   authService.isAuthenticated.subscribe({
     next: (data) => {
-      if(data) {
+      if (data) {
         return true;
       }
       else {

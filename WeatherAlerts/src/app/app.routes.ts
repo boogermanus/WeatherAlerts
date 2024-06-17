@@ -12,7 +12,7 @@ export const routes: Routes = [
     { path: 'alerts', component: AlertsComponent },
     { path: 'alerts/:id', component: AlertViewComponent },
     { path: 'auth/login', component: LoginComponent },
-    { path: 'auth/register', component: RegisterComponent},
-    { path: 'zones', component: ZonesComponent, canActivate: [authGuard]},
+    { path: 'auth/register', component: RegisterComponent },
+    { path: 'zones', component: ZonesComponent, canActivate: [authGuard] },
     { path: '**', component: HomeComponent, pathMatch: 'full', redirectTo: '' },
 ];

@@ -10,8 +10,8 @@ describe('AlertViewComponent', () => {
     await TestBed.configureTestingModule({
       imports: [AlertViewComponent]
     })
-    .compileComponents();
-    
+      .compileComponents();
+
     fixture = TestBed.createComponent(AlertViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideHttpClient(withInterceptors([jwtInterceptor])),
     provideAnimations(),
-    {provide: JWT_OPTIONS, useValue: JWT_OPTIONS},
+    { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService
   ],
 };

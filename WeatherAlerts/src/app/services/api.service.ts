@@ -12,7 +12,7 @@ export class ApiService {
   private readonly ALERTS_URL = 'https://api.weather.gov/alerts';
   private readonly ACTIVE_ALERTS_URL = 'https://api.weather.gov/alerts/active';
   private readonly ZONES_URL = 'https://api.weather.gov/zones';
-  
+
   constructor(private httpClient: HttpClient) { }
 
   public activeAlerts(params?: HttpParams): Observable<IAlertsResponse> {
@@ -24,6 +24,6 @@ export class ApiService {
   }
 
   public zones(params?: HttpParams): Observable<IZonesResponse> {
-    return this.httpClient.get<IZonesResponse>(`${this.ZONES_URL}`,{params})
+    return this.httpClient.get<IZonesResponse>(`${this.ZONES_URL}`, { params })
   }
 }

@@ -26,12 +26,12 @@ export class AuthService {
     localStorage.setItem(this.TOKEN, token)
     this.authenticated.next(true);
   }
-  
+
   public logout(): void {
     localStorage.removeItem(this.TOKEN);
     this.authenticated.next(false);
   }
-  
+
   public get isAuthenticated(): Observable<boolean> {
     return this.authenticated.asObservable();
   }

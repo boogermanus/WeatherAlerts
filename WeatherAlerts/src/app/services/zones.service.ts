@@ -16,7 +16,7 @@ export class ZonesService {
 
   public getZonesByArea(area: string): Observable<IZonesResponse> {
     const params = new HttpParams()
-      .append(this.AREA,area)
+      .append(this.AREA, area)
       .append(this.TYPE, this.COUNTY);
 
     return this.apiService.zones(params);

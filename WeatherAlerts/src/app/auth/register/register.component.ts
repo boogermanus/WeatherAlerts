@@ -25,24 +25,24 @@ export class RegisterComponent {
   public confirmPasswordControl: FormControl;
   public unableToRegister = false;
   public registrationSuccessful = false;
-  
+
   constructor(private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService
   ) {
-    this.emailControl = new FormControl('',Validators.compose([Validators.required,Validators.email]));
-    this.passwordControl = new FormControl('',Validators.required);
-    this.confirmPasswordControl = new FormControl('',Validators.required);
+    this.emailControl = new FormControl('', Validators.compose([Validators.required, Validators.email]));
+    this.passwordControl = new FormControl('', Validators.required);
+    this.confirmPasswordControl = new FormControl('', Validators.required);
 
     this.form = this.formBuilder.group({
       email: this.emailControl,
       password: this.passwordControl,
       confirmPassword: this.confirmPasswordControl
     },
-  {
-    validators: this.passwordValidator
-  })
+      {
+        validators: this.passwordValidator
+      })
   }
-  
+
   public passwordValidator(control: AbstractControl): ValidationErrors {
     // assumes that the form has a 'password' and 'confirmPassword' controls
     const password = control.get('password');
@@ -59,7 +59,7 @@ export class RegisterComponent {
     this.authService.register(new RegisterModel(this.emailControl.value, this.passwordControl.value, this.confirmPasswordControl.value))
       .subscribe({
         next: (data) => {
-          if(data.ok) {
+          if (data.ok) {
             this.registrationSuccessful = true;
           }
         },
@@ -69,7 +69,7 @@ export class RegisterComponent {
         }
       });
   }
-  
+
   public isControlInvalid(control: AbstractControl, error: string = 'required'): boolean {
     return control.touched && control.hasError(error);
   }

@@ -6,7 +6,7 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator';
 import { MatSort, MatSortModule } from '@angular/material/sort';
 import { OnInit } from '@angular/core';
 import { IAlertsResponse } from '../../interfaces/ialerts-response';
-import { MatFormFieldModule} from '@angular/material/form-field';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectChange, MatSelectModule } from '@angular/material/select';
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner"
 import { RouterModule } from '@angular/router';
@@ -22,7 +22,7 @@ import { MatInputModule } from '@angular/material/input';
     MatProgressSpinnerModule,
     RouterModule,
     MatPaginatorModule,
-    CommonModule, 
+    CommonModule,
     MatSortModule,
     MatInputModule
   ],

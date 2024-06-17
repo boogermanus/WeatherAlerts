@@ -34,18 +34,18 @@ export class LoginComponent implements OnInit {
 
   }
 
-  public submit(): void { 
+  public submit(): void {
     if (this.formLogin.controls['email'].valid && this.formLogin.controls['password'].valid) {
       this.authService.login(
         new AuthModel(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value))
-        .subscribe({ 
-          next: (response) => { 
+        .subscribe({
+          next: (response) => {
             this.authService.authenticate(response.access_token);
             this.router.navigate(['/']);
           },
           error: (error) => this.handleLoginError(error)
         });
-      
+
     }
   }
 

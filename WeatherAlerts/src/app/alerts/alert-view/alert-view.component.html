@@ -5,7 +5,8 @@
                 <div mat-card-avatar *ngIf="showBackButton">
                     <button matTooltip="Back" mat-icon-button (click)="back()">
                         <mat-icon>arrow_back</mat-icon>
-                    </button></div>
+                    </button>
+                </div>
                 <mat-card-title>{{alert.headline}}</mat-card-title>
                 <mat-card-subtitle>
                     <p style="margin: 20px">Severity: <span [ngClass]="severity">{{alert.severity}}</span></p>
