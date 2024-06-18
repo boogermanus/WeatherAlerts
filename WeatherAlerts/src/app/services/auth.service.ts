@@ -36,6 +36,11 @@ export class AuthService {
     return this.authenticated.asObservable();
   }
 
+  public get isValidToken(): boolean {
+    const token = localStorage.getItem(this.TOKEN);
+    return !this.jwtService.isTokenExpired(token)
+  }
+
   public register(model: RegisterModel): Observable<HttpResponse<any>> {
     return this.httpClient.post<HttpResponse<any>>(`${ApiConfig.authApi}/register`, model);
   }

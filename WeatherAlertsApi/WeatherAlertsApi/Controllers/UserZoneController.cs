@@ -39,4 +39,11 @@ public class UserZonesController : Controller
         return Ok(result);
     }
 
+    [HttpDelete("DeleteUserZone/{zoneId}")]
+    public async Task<IActionResult> DeleteUserZone([FromRoute]string zoneId) 
+    {
+        var result = await _userZoneService.DeleteUserZone(zoneId);
+        return Ok(result);
+    }
+
 }

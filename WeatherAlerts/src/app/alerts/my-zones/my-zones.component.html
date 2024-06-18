@@ -1,0 +1,14 @@
+<div *ngFor="let zone of zones" class="myzone">
+    <div class="row">
+        <div class="col-sm-6">
+            <h3>{{zone.name}} - {{zone.state}}</h3>
+        </div>
+        <div class="col-sm-6">
+            <button class="float-right" mat-icon-button (click)="remove(zone.id)" matTooltip="Remove from My Zones"
+                matTooltipPosition="left" color="primary">
+                <mat-icon>remove</mat-icon>
+            </button>
+        </div>
+    </div>
+    <!-- <app-view-zone-alerts [zoneId]="zone.id"></app-view-zone-alerts> -->
+</div>

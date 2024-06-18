@@ -17,8 +17,7 @@ public class UserZoneService : IUserZoneService
     public async Task<UserZoneModel> AddUserZone(UserZoneModel userZoneModel)
     {
         var model = userZoneModel.ToDomainModel();
-        model.CreateDate = DateTime.Now;
-        model.Visible = true;
+        model.UserId = _userService.CurrentUserId;
 
         var result = await _userZoneRepository.Add(model);
 
@@ -38,5 +37,19 @@ public class UserZoneService : IUserZoneService
 
         var results = await _userZoneRepository.GetByUserId(userId);
         return results.Select(ur => ur.ToApiModel());
+    }
+
+    public async Task<UserZoneModel> DeleteUserZone(string zoneId)
+    {
+        var userId = _userService.CurrentUserId;
+        var zones = await _userZoneRepository.GetByUserId(userId);
+        var zone = zones.FirstOrDefault(z => z.ZoneId == zoneId);
+        if(zone != null)
+        {
+            await _userZoneRepository.Delete(zone.Id);
+            return zone.ToApiModel();
+        }
+
+        return null;
     }
 }

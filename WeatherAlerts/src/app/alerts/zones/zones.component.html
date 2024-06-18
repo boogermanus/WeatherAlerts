@@ -29,11 +29,11 @@
                 <td>{{zone.name}}</td>
                 <td>
                     <button *ngIf="!zone.userHasZone" mat-mini-fab matTooltip="Add to My Zones"
-                        matTooltipPosition="left" color="primary">
+                        matTooltipPosition="left" color="primary" (click)="addZone(zone.id)">
                         <mat-icon>add</mat-icon>
                     </button>
                     <button *ngIf="zone.userHasZone" mat-mini-fab matTooltip="Remove from My Zones"
-                        matTooltipPosition="left" color="primary">
+                        matTooltipPosition="left" color="primary" (click)="deleteZone(zone.id)">
                         <mat-icon>remove</mat-icon>
                     </button>
                 </td>

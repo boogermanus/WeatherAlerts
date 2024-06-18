@@ -1,3 +1,4 @@
+using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Http;
 using WeatherAlertsApi.Core.Interfaces.Api;
@@ -14,5 +15,5 @@ public class UserService : IUserService
     }
     public ClaimsPrincipal User => _context.HttpContext.User;
 
-    public string CurrentUserId => User.FindFirstValue(ClaimTypes.Name) ?? string.Empty;
+    public string CurrentUserId => User.FindFirstValue(JwtRegisteredClaimNames.Name) ?? string.Empty;
 }

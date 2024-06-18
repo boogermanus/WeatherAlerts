@@ -13,6 +13,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { IUserZone } from '../../interfaces/iuser-zone';
+import { UserZoneService } from '../../services/user-zone.service';
 
 function validateState(control: FormControl): ValidationErrors {
   const value = control.value;
@@ -52,7 +54,9 @@ export class ZonesComponent implements OnInit {
   loading = false;
   showTable = false;
 
-  constructor(private zonesService: ZonesService) { }
+  constructor(private zonesService: ZonesService,
+    private readonly userZoneService: UserZoneService
+  ) { }
 
   ngOnInit(): void {
     this.statesFilter = this.statesControl.valueChanges
@@ -90,5 +94,23 @@ export class ZonesComponent implements OnInit {
 
   public displayWith(value: any): string {
     return value && value.typeValue ? value.caption : '';
+  }
+
+  public addZone(id: string): void {
+    const newZone: IUserZone = {
+      zoneId: id,
+      createDate: new Date(),
+      visible: true
+    };
+
+    const zone = this.zones.find(z => z.id === id);
+    zone.userHasZone = true;
+    this.userZoneService.addUserZone(newZone);
+  }
+
+  public deleteZone(zoneId: string): Promise<any> {
+    const zone = this.zones.find(z => z.id === zoneId);
+    zone.userHasZone = false;
+    return this.userZoneService.deleteUserZone(zoneId);
   }
 }
