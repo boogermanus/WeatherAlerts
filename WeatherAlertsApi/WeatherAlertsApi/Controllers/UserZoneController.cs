@@ -32,7 +32,7 @@ public class UserZonesController : Controller
     }
 
     [HttpPost("AddUserZone")]
-    public async Task<IActionResult> AddUserZone(UserZoneModel model)
+    public async Task<IActionResult> AddUserZone([FromBody]UserZoneModel model)
     {
         var result = await _userZoneService.AddUserZone(model);
 
