@@ -53,18 +53,21 @@ export class ZonesComponent implements OnInit {
   filter = '';
   loading = false;
   showTable = false;
+  userZones: IUserZone[] = []
 
   constructor(private zonesService: ZonesService,
     private readonly userZoneService: UserZoneService
   ) { }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
     this.statesFilter = this.statesControl.valueChanges
       .pipe(
         startWith(''),
         map(value => typeof value === 'string' ? value : value.caption),
         map(caption => caption ? this.filterState(caption) : this.states.slice())
       )
+    
+    this.userZones = await this.userZoneService.getUserZones();
   }
 
   private filterState(caption: string): any[] {
@@ -88,6 +91,10 @@ export class ZonesComponent implements OnInit {
           this.loading = false;
           this.showTable = true;
           this.filter = '';
+
+          for(const zone of this.zones) {
+            zone.userHasZone = this.userZones.findIndex(uz => uz.zoneId === zone.id) !== -1 ? true : false;
+          }
         }
       });
   }

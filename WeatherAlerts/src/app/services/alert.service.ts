@@ -28,6 +28,10 @@ export class AlertService {
     return this.apiService.alert(id);
   }
 
+  public getAlertsByZoneId(zoneId: string): Observable<IAlertsResponse> {
+    return this.apiService.activeAlertsByZone(zoneId);
+  }
+
   public mapAlertsToAlertProperties(alert: IAlert): IAlertProperties {
     const properties = alert.properties;
     properties.senderName = this.chopNwsFromSenderName(properties.senderName);

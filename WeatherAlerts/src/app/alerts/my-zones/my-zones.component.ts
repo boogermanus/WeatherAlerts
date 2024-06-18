@@ -7,6 +7,7 @@ import { IUserZone } from '../../interfaces/iuser-zone';
 import { IZoneProperties } from '../../interfaces/izone-properties';
 import { UserZoneService } from '../../services/user-zone.service';
 import { ZonesService } from '../../services/zones.service';
+import { ViewZoneAlertComponent } from '../view-zone-alert/view-zone-alert.component';
 
 @Component({
   selector: 'app-my-zones',
@@ -15,7 +16,8 @@ import { ZonesService } from '../../services/zones.service';
     CommonModule,
     MatIconModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    ViewZoneAlertComponent
   ],
   templateUrl: './my-zones.component.html',
   styleUrl: './my-zones.component.css'

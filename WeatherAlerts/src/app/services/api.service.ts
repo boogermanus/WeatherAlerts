@@ -19,6 +19,10 @@ export class ApiService {
     return this.httpClient.get<IAlertsResponse>(`${this.ACTIVE_ALERTS_URL}`, { params });
   }
 
+  public activeAlertsByZone(zoneId: string): Observable<IAlertsResponse> {
+    return this.httpClient.get<IAlertsResponse>(`${this.ACTIVE_ALERTS_URL}/zone/${zoneId}`);
+  }
+
   public alert(path: string): Observable<IAlertResponse> {
     return this.httpClient.get<IAlertResponse>(`${this.ALERTS_URL}/${path}`);
   }

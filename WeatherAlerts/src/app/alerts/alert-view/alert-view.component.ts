@@ -37,6 +37,10 @@ export class AlertViewComponent {
   ngOnInit(): void {
     const id = this.activatedRoute.snapshot.params[this.ID];
 
+    if(id === undefined) {
+      return;
+    }
+    
     this.alertService.getAlertById(id)
       .subscribe(
         {
