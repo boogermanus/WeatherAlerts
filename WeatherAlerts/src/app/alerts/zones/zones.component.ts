@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule, ValidationErrors } from '@angular/forms';
 import { StateConstants } from '../../models/state-constants';
-import { Observable, map, startWith } from 'rxjs';
+import { Observable, Subscription, map, startWith } from 'rxjs';
 import { IZoneProperties } from '../../interfaces/izone-properties';
 import { CommonModule } from '@angular/common';
 import { ZonesService } from '../../services/zones.service';
@@ -46,14 +46,14 @@ function validateState(control: FormControl): ValidationErrors {
   ]
 })
 export class ZonesComponent implements OnInit {
-  statesControl = new FormControl<any>('', validateState);
-  states: any[] = StateConstants.states;
-  statesFilter: Observable<any[]>;
-  zones: IZoneProperties[];
-  filter = '';
-  loading = false;
-  showTable = false;
-  userZones: IUserZone[] = []
+  public statesControl = new FormControl<any>('', validateState);
+  public states: any[] = StateConstants.states;
+  public statesFilter: Observable<any[]>;
+  public zones: IZoneProperties[];
+  public filter = '';
+  public loading = false;
+  public showTable = false;
+  public userZones: IUserZone[] = []
 
   constructor(private zonesService: ZonesService,
     private readonly userZoneService: UserZoneService

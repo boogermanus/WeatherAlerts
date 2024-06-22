@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { AuthModel } from '../../models/auth-model';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -12,11 +13,12 @@ import { AuthModel } from '../../models/auth-model';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnDestroy {
 
   public formLogin: FormGroup
   public loginError = false;
   public otherLoginError = false;
+  private subscription: Subscription;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -30,13 +32,14 @@ export class LoginComponent implements OnInit {
 
 
   }
-  ngOnInit(): void {
 
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
   }
-
+  
   public submit(): void {
     if (this.formLogin.controls['email'].valid && this.formLogin.controls['password'].valid) {
-      this.authService.login(
+      this.subscription = this.authService.login(
         new AuthModel(this.formLogin.controls['email'].value, this.formLogin.controls['password'].value))
         .subscribe({
           next: (response) => {

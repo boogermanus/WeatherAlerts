@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { IAlertProperties } from '../../interfaces/ialert-properties';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AlertService } from '../../services/alert.service';
@@ -9,6 +9,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatIconModule } from '@angular/material/icon';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-alert-view',
@@ -23,11 +24,12 @@ import { MatButtonModule } from '@angular/material/button';
   templateUrl: './alert-view.component.html',
   styleUrl: './alert-view.component.css'
 })
-export class AlertViewComponent {
+export class AlertViewComponent implements OnInit, OnDestroy{
   private readonly ID: string = 'id';
   @Input() alert: IAlertProperties = new AlertProperties();
   @Input() showBackButton = true;
   public severity: string;
+  private subscription: Subscription;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -41,7 +43,7 @@ export class AlertViewComponent {
       return;
     }
     
-    this.alertService.getAlertById(id)
+    this.subscription = this.alertService.getAlertById(id)
       .subscribe(
         {
           next: (data) => {
@@ -52,7 +54,11 @@ export class AlertViewComponent {
         });
   }
 
-  back(): void {
+  public ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public back(): void {
     this.router.navigate(['/alerts']);
   }
 }
