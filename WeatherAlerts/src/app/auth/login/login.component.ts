@@ -18,7 +18,7 @@ export class LoginComponent implements OnDestroy {
   public formLogin: FormGroup
   public loginError = false;
   public otherLoginError = false;
-  private subscription: Subscription;
+  private subscription: Subscription = null;
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -29,14 +29,14 @@ export class LoginComponent implements OnDestroy {
       email: ['', Validators.compose([Validators.required, Validators.email])],
       password: ['', Validators.required]
     });
-
-
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    if (this.subscription !== null) {
+      this.subscription.unsubscribe();
+    }
   }
-  
+
   public submit(): void {
     if (this.formLogin.controls['email'].valid && this.formLogin.controls['password'].valid) {
       this.subscription = this.authService.login(

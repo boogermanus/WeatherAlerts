@@ -22,7 +22,7 @@
                 <div class="alert alert-danger" *ngIf="isControlInvalid(form, 'password')">Passwords do not match</div>
             </div>
             <div class="alert alert-info" *ngIf="registrationSuccessful">Registration succesful! Please <a
-                    [routerLink]="['auth/login']">Login</a></div>
+                    [routerLink]="['/auth/login']">Login</a></div>
             <div class="d-grid gap-2">
                 <button class="btn btn-primary" type="submit">Register</button>
             </div>

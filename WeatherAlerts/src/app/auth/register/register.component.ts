@@ -62,11 +62,11 @@ export class RegisterComponent implements OnDestroy{
   }
 
   public submit(): void {
-    this.subscription =this.authService.register(
+    this.subscription = this.authService.register(
       new RegisterModel(this.emailControl.value, this.passwordControl.value, this.confirmPasswordControl.value))
       .subscribe({
         next: (data) => {
-          if (data.ok) {
+          if (data) {
             this.registrationSuccessful = true;
           }
         },

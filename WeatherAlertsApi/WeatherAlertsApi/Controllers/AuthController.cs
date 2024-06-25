@@ -23,7 +23,7 @@ public class AuthController : Controller
         var result = await _authService.Register(model);
 
         if (result.Succeeded)
-            return Ok();
+            return Ok(true);
 
         result.Errors.ToList().ForEach(e => ModelState.AddModelError(e.Code, e.Description));
 
