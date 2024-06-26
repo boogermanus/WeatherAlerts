@@ -41,7 +41,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
-builder.Services.AddDefaultIdentity<User>(options => options.SignIn.RequireConfirmedAccount = true)
+builder.Services.AddDefaultIdentity<User>()
     .AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddAuthentication(options => {
