@@ -51,7 +51,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         if(existing == null)
             return null;
 
-        _context.Entry(existing)
+        _context.Entry(entity)
         .CurrentValues
         .SetValues(existing);
 
