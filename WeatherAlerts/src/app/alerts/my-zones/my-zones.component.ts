@@ -27,7 +27,7 @@ export class MyZonesComponent implements OnInit, OnDestroy {
 
   public userZones: IUserZone[] = [];
   public zones: IZoneProperties[] = [];
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
 
   constructor(private readonly userZoneService: UserZoneService,
     private readonly zonesService: ZonesService
