@@ -16,7 +16,11 @@ export class AuthService {
   private authenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
   constructor(
     private readonly httpClient: HttpClient,
-    private readonly jwtService: JwtHelperService) { }
+    private readonly jwtService: JwtHelperService) { 
+      if(this.isValidToken) {
+        this.authenticated.next(true);
+      }
+    }
 
   public login(model: AuthModel): Observable<IAuthResponse> {
     return this.httpClient.post<IAuthResponse>(`${ApiConfig.authApi}/login`, model);
