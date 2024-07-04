@@ -26,7 +26,7 @@ export class RegisterComponent implements OnDestroy{
   public confirmPasswordControl: FormControl;
   public unableToRegister = false;
   public registrationSuccessful = false;
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
 
   constructor(private readonly formBuilder: FormBuilder,
     private readonly authService: AuthService

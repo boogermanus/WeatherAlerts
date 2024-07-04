@@ -18,7 +18,7 @@ export class LoginComponent implements OnDestroy {
   public formLogin: FormGroup
   public loginError = false;
   public otherLoginError = false;
-  private subscription: Subscription = null;
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private readonly formBuilder: FormBuilder,
@@ -32,9 +32,7 @@ export class LoginComponent implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    if (this.subscription !== null) {
       this.subscription.unsubscribe();
-    }
   }
 
   public submit(): void {

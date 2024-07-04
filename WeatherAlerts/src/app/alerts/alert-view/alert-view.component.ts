@@ -29,7 +29,7 @@ export class AlertViewComponent implements OnInit, OnDestroy{
   @Input() alert: IAlertProperties = new AlertProperties();
   @Input() showBackButton = true;
   public severity: string;
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,

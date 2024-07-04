@@ -23,7 +23,7 @@ export class ViewZoneAlertComponent implements OnInit, OnDestroy {
   @Input()zoneId: string;
   public loading = true;
   public alerts: IAlertProperties[] = []
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
 
   constructor(private readonly alertService: AlertService) {}
 

@@ -47,7 +47,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   public dataSource: MatTableDataSource<IAlertProperties>;
   public errorLoading: boolean = false;
   private originalFilterPredicate: ((data: IAlertProperties, filter: string) => boolean) | undefined;
-  private subscription: Subscription;
+  private subscription: Subscription = new Subscription();
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
