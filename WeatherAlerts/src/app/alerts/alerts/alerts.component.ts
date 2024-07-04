@@ -13,6 +13,10 @@ import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatInputModule } from '@angular/material/input';
 import { Subscription } from 'rxjs';
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatBadgeModule } from '@angular/material/badge';
 @Component({
   selector: 'app-alerts',
   standalone: true,
@@ -25,7 +29,11 @@ import { Subscription } from 'rxjs';
     MatPaginatorModule,
     CommonModule,
     MatSortModule,
-    MatInputModule
+    MatInputModule,
+    MatButtonModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatBadgeModule,
   ],
   templateUrl: './alerts.component.html',
   styleUrl: './alerts.component.css'
@@ -48,6 +56,8 @@ export class AlertsComponent implements OnInit, OnDestroy {
   public errorLoading: boolean = false;
   private originalFilterPredicate: ((data: IAlertProperties, filter: string) => boolean) | undefined;
   private subscription: Subscription = new Subscription();
+  public initialAlertsCount = 0;
+  public refreshAlertsCount = 0;
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
@@ -57,12 +67,16 @@ export class AlertsComponent implements OnInit, OnDestroy {
   }
 
   public ngOnInit(): void {
+    this.loadAlerts();
+  }
+
+  private loadAlerts(): void {
     this.subscription = this.alertsService.getActiveAlerts()
-      .subscribe(
-        {
-          next: (data) => this.setupDataSource(data),
-          error: (error) => console.log(error)
-        });
+    .subscribe(
+      {
+        next: (data) => this.setupDataSource(data),
+        error: (error) => console.log(error)
+      });
   }
 
   public ngOnDestroy(): void {
@@ -76,6 +90,15 @@ export class AlertsComponent implements OnInit, OnDestroy {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.originalFilterPredicate = this.dataSource.filterPredicate;
+
+    if(this.initialAlertsCount === 0) {
+      this.initialAlertsCount = this.alerts.length;
+    }
+    
+    this.refreshAlertsCount = this.alerts.length - this.initialAlertsCount;
+    if(this.refreshAlertsCount <= 0) {
+      this.refreshAlertsCount = 0;
+    }
   }
 
   public filterOnChanged(event: MatSelectChange): void {
@@ -118,5 +141,10 @@ export class AlertsComponent implements OnInit, OnDestroy {
 
   private filterBySeverity(data: IAlertProperties, filter: string): boolean {
     return !filter || data.severity.toLowerCase().includes(filter.toLowerCase());
+  }
+
+  public refresh(): void {
+    this.loading = true;
+    this.loadAlerts();
   }
 }
