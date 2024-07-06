@@ -21,9 +21,13 @@ export class UserZoneService {
     return lastValueFrom(data);
   }
 
-  public deleteUserZone(zoneId: string): Promise<IUserZone> {
-    const data = this.httpClient.delete<IUserZone>(`${ApiConfig.zoneApi}/DeleteUserZone/${zoneId}`);
-    return lastValueFrom(data);
+  public deleteUserZone(zoneId: string): Observable<IUserZone> {
+    return this.httpClient.delete<IUserZone>(`${ApiConfig.zoneApi}/DeleteUserZone/${zoneId}`);
   }
+
+  // public deleteUserZone(zoneId: string): Promise<IUserZone> {
+  //   const data = this.httpClient.delete<IUserZone>(`${ApiConfig.zoneApi}/DeleteUserZone/${zoneId}`);
+  //   return lastValueFrom(data);
+  // }
 
 }

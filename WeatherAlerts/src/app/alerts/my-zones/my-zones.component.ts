@@ -59,10 +59,18 @@ export class MyZonesComponent implements OnInit, OnDestroy {
     this.subscriptions.unsubscribe();
   }
 
-  public async remove(zoneId: string): Promise<void> {
-    await this.userZoneService.deleteUserZone(zoneId);
-    const index = this.zones.findIndex(z => z.id == zoneId);
-    this.zones.splice(index,1);
+  public remove(zoneId: string): void {
+    // await this.userZoneService.deleteUserZone(zoneId);
+    // const index = this.zones.findIndex(z => z.id == zoneId);
+    // this.zones.splice(index,1);
+
+    this.subscriptions.add(this.userZoneService.deleteUserZone(zoneId)
+      .subscribe({
+        next: (data) => {
+          const index = this.zones.findIndex(z => z.id === zoneId)
+          this.zones.splice(index, 1);
+        }
+      }));
   }
 
 }

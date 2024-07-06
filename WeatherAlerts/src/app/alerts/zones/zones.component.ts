@@ -57,6 +57,7 @@ export class ZonesComponent implements OnInit {
   public showTable = false;
   public userZones: IUserZone[] = []
   public typeSelected: string = 'public'
+  public subscriptions: Subscription = new Subscription();
 
   constructor(private zonesService: ZonesService,
     private readonly userZoneService: UserZoneService
@@ -71,12 +72,12 @@ export class ZonesComponent implements OnInit {
       )
     
     // this.userZones = await this.userZoneService.getUserZones();
-    this.userZoneService.getUserZones()
+    this.subscriptions.add(this.userZoneService.getUserZones()
       .subscribe({
         next: (data) => {
           this.userZones = data;
         }
-      });
+      }));
   }
 
   private filterState(caption: string): any[] {
@@ -124,9 +125,16 @@ export class ZonesComponent implements OnInit {
     this.userZoneService.addUserZone(newZone);
   }
 
-  public deleteZone(zoneId: string): Promise<any> {
-    const zone = this.zones.find(z => z.id === zoneId);
-    zone.userHasZone = false;
-    return this.userZoneService.deleteUserZone(zoneId);
+  public deleteZone(zoneId: string): void {
+    // const zone = this.zones.find(z => z.id === zoneId);
+    // zone.userHasZone = false;
+    // return this.userZoneService.deleteUserZone(zoneId);
+    this.subscriptions.add(this.userZoneService.deleteUserZone(zoneId)
+    .subscribe({
+      next: (data) => {
+        const zone = this.zones.find(z => z.id === zoneId)
+        zone.userHasZone = false;
+      }
+    }));
   }
 }
