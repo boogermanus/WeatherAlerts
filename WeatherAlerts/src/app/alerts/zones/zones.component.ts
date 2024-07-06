@@ -62,7 +62,7 @@ export class ZonesComponent implements OnInit {
     private readonly userZoneService: UserZoneService
   ) { }
 
-  async ngOnInit(): Promise<void> {
+  ngOnInit(): void {
     this.statesFilter = this.statesControl.valueChanges
       .pipe(
         startWith(''),
@@ -70,7 +70,13 @@ export class ZonesComponent implements OnInit {
         map(caption => caption ? this.filterState(caption) : this.states.slice())
       )
     
-    this.userZones = await this.userZoneService.getUserZones();
+    // this.userZones = await this.userZoneService.getUserZones();
+    this.userZoneService.getUserZones()
+      .subscribe({
+        next: (data) => {
+          this.userZones = data;
+        }
+      });
   }
 
   private filterState(caption: string): any[] {

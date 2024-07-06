@@ -27,31 +27,39 @@ export class MyZonesComponent implements OnInit, OnDestroy {
 
   public userZones: IUserZone[] = [];
   public zones: IZoneProperties[] = [];
-  private subscription: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private readonly userZoneService: UserZoneService,
     private readonly zonesService: ZonesService
   ) {}
 
-  async ngOnInit(): Promise<void> {
-    this.userZones = await this.userZoneService.getUserZones();
-    const userZoneIds = this.userZones.map(uz => uz.zoneId);
-    this.subscription = this.zonesService.getZoneById(userZoneIds)
+  ngOnInit(): void {
+    this.subscriptions.add(this.userZoneService.getUserZones()
       .subscribe({
         next: (data) => {
-          this.zones = data.features.map(f => {
-            f.properties.userHasZone = true;
-            return f.properties;
-          })
+          let userZones = data.map(uz => uz.zoneId);
+          this.loadZones(userZones);
         }
-      });
+      }));
+  }
+
+  public loadZones(zones: string[]): void {
+    this.subscriptions.add(this.zonesService.getZoneById(zones)
+    .subscribe({
+      next: (data) => {
+        this.zones = data.features.map(f => {
+          f.properties.userHasZone = true;
+          return f.properties;
+        });
+      }
+    }));
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
-  async remove(zoneId: string): Promise<void> {
+  public async remove(zoneId: string): Promise<void> {
     await this.userZoneService.deleteUserZone(zoneId);
     const index = this.zones.findIndex(z => z.id == zoneId);
     this.zones.splice(index,1);
