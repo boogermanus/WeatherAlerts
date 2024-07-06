@@ -40,6 +40,7 @@ export class AlertViewComponent implements OnInit, OnDestroy{
     const id = this.activatedRoute.snapshot.params[this.ID];
 
     if(id === undefined) {
+      this.severity = SeverityConstants.getSeverityClass(this.alert.severity)
       return;
     }
     
