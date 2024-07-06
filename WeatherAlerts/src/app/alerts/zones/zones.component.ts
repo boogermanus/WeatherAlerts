@@ -15,6 +15,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { IUserZone } from '../../interfaces/iuser-zone';
 import { UserZoneService } from '../../services/user-zone.service';
+import { MatSelectModule } from '@angular/material/select';
 
 function validateState(control: FormControl): ValidationErrors {
   const value = control.value;
@@ -42,7 +43,8 @@ function validateState(control: FormControl): ValidationErrors {
     MatIconModule,
     MatProgressSpinnerModule,
     MatButtonModule,
-    MatTooltipModule
+    MatTooltipModule,
+    MatSelectModule,
   ]
 })
 export class ZonesComponent implements OnInit {
@@ -54,6 +56,7 @@ export class ZonesComponent implements OnInit {
   public loading = false;
   public showTable = false;
   public userZones: IUserZone[] = []
+  public typeSelected: string = 'public'
 
   constructor(private zonesService: ZonesService,
     private readonly userZoneService: UserZoneService
@@ -84,7 +87,7 @@ export class ZonesComponent implements OnInit {
 
     this.loading = true;
     this.showTable = false;
-    this.zonesService.getZonesByArea(this.statesControl.value.typeValue)
+    this.zonesService.getZonesByAreaAndType(this.statesControl.value.typeValue, this.typeSelected)
       .subscribe({
         next: (data) => {
           this.zones = data.features.map(f => f.properties)

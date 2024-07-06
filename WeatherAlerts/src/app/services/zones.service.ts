@@ -10,14 +10,13 @@ import { HttpParams } from '@angular/common/http';
 export class ZonesService {
   private readonly AREA = 'area';
   private readonly TYPE = 'type';
-  private readonly COUNTY = 'county';
   private readonly ID = 'id';
   constructor(private readonly apiService: ApiService) { }
 
-  public getZonesByArea(area: string): Observable<IZonesResponse> {
+  public getZonesByAreaAndType(area: string, type: string): Observable<IZonesResponse> {
     const params = new HttpParams()
       .append(this.AREA, area)
-      .append(this.TYPE, this.COUNTY);
+      .append(this.TYPE, type);
 
     return this.apiService.zones(params);
   }

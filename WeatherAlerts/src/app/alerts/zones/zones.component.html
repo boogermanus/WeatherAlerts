@@ -3,7 +3,14 @@
 </div>
 <div class="row">
     <mat-form-field class="col-sm-2">
-        <mat-label>state</mat-label>
+        <mat-label>Zone Type</mat-label>
+        <mat-select [(value)]="typeSelected" (blur)="loadZones()">
+            <mat-option value="public">Public</mat-option>
+            <mat-option value="county">County</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-sm-2">
+        <mat-label>State</mat-label>
         <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl" (blur)="loadZones()">
         <mat-autocomplete #autoState="matAutocomplete" [displayWith]="displayWith">
             <mat-option *ngFor="let state of statesFilter | async" [value]="state">
