@@ -29,7 +29,7 @@ export class AlertViewComponent implements OnInit, OnDestroy{
   @Input() alert: IAlertProperties = new AlertProperties();
   @Input() showBackButton = true;
   public severity: string;
-  private subscription: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -44,7 +44,7 @@ export class AlertViewComponent implements OnInit, OnDestroy{
       return;
     }
     
-    this.subscription = this.alertService.getAlertById(id)
+    this.subscriptions.add(this.alertService.getAlertById(id)
       .subscribe(
         {
           next: (data) => {
@@ -52,11 +52,11 @@ export class AlertViewComponent implements OnInit, OnDestroy{
             this.severity = SeverityConstants.getSeverityClass(this.alert.severity);
           },
           error: (error) => console.log(error)
-        });
+        }));
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   public back(): void {

@@ -47,7 +47,7 @@ function validateState(control: FormControl): ValidationErrors {
     MatSelectModule,
   ]
 })
-export class ZonesComponent implements OnInit {
+export class ZonesComponent implements OnInit, OnDestroy {
   public statesControl = new FormControl<any>('', validateState);
   public states: any[] = StateConstants.states;
   public statesFilter: Observable<any[]>;
@@ -78,6 +78,10 @@ export class ZonesComponent implements OnInit {
           this.userZones = data;
         }
       }));
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptions.unsubscribe();
   }
 
   private filterState(caption: string): any[] {
@@ -126,15 +130,12 @@ export class ZonesComponent implements OnInit {
   }
 
   public deleteZone(zoneId: string): void {
-    // const zone = this.zones.find(z => z.id === zoneId);
-    // zone.userHasZone = false;
-    // return this.userZoneService.deleteUserZone(zoneId);
     this.subscriptions.add(this.userZoneService.deleteUserZone(zoneId)
-    .subscribe({
-      next: (data) => {
-        const zone = this.zones.find(z => z.id === zoneId)
-        zone.userHasZone = false;
-      }
-    }));
+      .subscribe({
+        next: (data) => {
+          const zone = this.zones.find(z => z.id === zoneId)
+          zone.userHasZone = false;
+        }
+      }));
   }
 }

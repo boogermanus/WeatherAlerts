@@ -55,7 +55,7 @@ export class AlertsComponent implements OnInit, OnDestroy {
   public dataSource: MatTableDataSource<IAlertProperties>;
   public errorLoading: boolean = false;
   private originalFilterPredicate: ((data: IAlertProperties, filter: string) => boolean) | undefined;
-  private subscription: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
   public initialAlertsCount = 0;
   public refreshAlertsCount = 0;
 
@@ -71,16 +71,16 @@ export class AlertsComponent implements OnInit, OnDestroy {
   }
 
   private loadAlerts(): void {
-    this.subscription = this.alertsService.getActiveAlerts()
+    this.subscriptions.add(this.alertsService.getActiveAlerts()
     .subscribe(
       {
         next: (data) => this.setupDataSource(data),
         error: (error) => console.log(error)
-      });
+      }));
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 
   private setupDataSource(data: IAlertsResponse): void {

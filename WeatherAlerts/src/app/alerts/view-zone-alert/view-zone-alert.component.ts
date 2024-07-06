@@ -23,21 +23,21 @@ export class ViewZoneAlertComponent implements OnInit, OnDestroy {
   @Input()zoneId: string;
   public loading = true;
   public alerts: IAlertProperties[] = []
-  private subscription: Subscription = new Subscription();
+  private subscriptions: Subscription = new Subscription();
 
   constructor(private readonly alertService: AlertService) {}
 
   public ngOnInit(): void {
-    this.subscription = this.alertService.getAlertsByZoneId(this.zoneId)
+    this.subscriptions.add(this.alertService.getAlertsByZoneId(this.zoneId)
       .subscribe({
         next: (data) => {
           this.alerts = data.features.map(f => this.alertService.mapAlertsToAlertProperties(f));
           this.loading = false;
         }
-      });
+      }));
   }
 
   public ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }
