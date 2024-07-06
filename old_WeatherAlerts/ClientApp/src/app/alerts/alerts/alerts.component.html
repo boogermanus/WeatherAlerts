@@ -1,0 +1,55 @@
+<ng-template [ngIf]="errorLoading">
+    <div class="alert alert-danger">Error loading data from https://api.weather.gov/alerts</div>
+</ng-template>
+<div [hidden]="loading">
+    <mat-form-field style="margin-right: 20px;">
+        <mat-label>Filter On</mat-label>
+        <mat-select value="All" (selectionChange)="filterOnChanged($event)">
+            <mat-option *ngFor="let option of filterOn" [value]="option">
+                {{option}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Filter By</mat-label>
+        <input matInput type="text" (keyup)="filterOnKeyUp($event)">
+    </mat-form-field>
+    <div>
+        <mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+            <ng-container matColumnDef="event">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Event </mat-header-cell>
+                <mat-cell *matCellDef="let element"><a [routerLink]="element.id">{{element.event}}</a></mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="senderName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> issuer </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.senderName}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="severity">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Severity </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.severity}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="sent">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Sent </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.sent | date: 'short'}}</mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="messageType">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> Type </mat-header-cell>
+                <mat-cell *matCellDef="let element">{{element.messageType}}</mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+        </mat-table>
+        <mat-paginator #paginator [pageSize]="10" [pageSizeOptions]="[5,10,25,50]" [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+</div>
+
+<ng-template [ngIf]="loading">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+</ng-template>

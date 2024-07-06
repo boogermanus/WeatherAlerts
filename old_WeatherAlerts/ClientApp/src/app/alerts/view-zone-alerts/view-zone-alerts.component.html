@@ -1,0 +1,16 @@
+<ng-template [ngIf]="alerts?.length === 0 && !loading">
+    <h3 class="alert alert-success">No alerts</h3>
+</ng-template>
+<ng-template [ngIf]="loading">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+</ng-template>
+<mat-accordion>
+    <mat-expansion-panel *ngFor="let alert of alerts">
+        <mat-expansion-panel-header class="expansionPanel">
+            <mat-panel-title>
+                {{alert.headline}}
+            </mat-panel-title>
+        </mat-expansion-panel-header>
+        <app-alerts-view [alert]="alert" [showBackButton]="false"></app-alerts-view>
+    </mat-expansion-panel>
+</mat-accordion>
