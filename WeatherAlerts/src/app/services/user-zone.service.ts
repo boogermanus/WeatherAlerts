@@ -10,19 +10,7 @@ import { appConfig } from '../app.config';
 })
 export class UserZoneService {
 
-  private readonly USER_ID: string = "userId";
   constructor(private readonly httpClient: HttpClient) { }
-
-  // public getUserZones(userId?: string): Promise<IUserZone[]> {
-  //   let params = new HttpParams();
-
-  //   if (userId) {
-  //     params.set(this.USER_ID, userId)
-  //   }
-
-  //   const data = this.httpClient.get<IUserZone[]>(`${ApiConfig.zoneApi}/GetUserZones`, { params });
-  //   return lastValueFrom(data);
-  // }
 
   public getUserZones(): Observable<IUserZone[]> {
     return this.httpClient.get<IUserZone[]>(`${ApiConfig.zoneApi}/GetUserZones`);
