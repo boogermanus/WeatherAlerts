@@ -21,6 +21,7 @@ import { Subscription } from 'rxjs';
 })
 export class ViewZoneAlertComponent implements OnInit, OnDestroy {
   @Input()zoneId: string;
+  public alertCount: number = 0;
   public loading = true;
   public alerts: IAlertProperties[] = []
   private subscriptions: Subscription = new Subscription();
@@ -33,6 +34,7 @@ export class ViewZoneAlertComponent implements OnInit, OnDestroy {
         next: (data) => {
           this.alerts = data.features.map(f => this.alertService.mapAlertsToAlertProperties(f));
           this.loading = false;
+          this.alertCount = this.alerts.length;
         }
       }));
   }

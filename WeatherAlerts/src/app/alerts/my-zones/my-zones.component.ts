@@ -9,6 +9,7 @@ import { UserZoneService } from '../../services/user-zone.service';
 import { ZonesService } from '../../services/zones.service';
 import { ViewZoneAlertComponent } from '../view-zone-alert/view-zone-alert.component';
 import { Subscription } from 'rxjs';
+import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
   selector: 'app-my-zones',
@@ -18,7 +19,8 @@ import { Subscription } from 'rxjs';
     MatIconModule,
     MatButtonModule,
     MatTooltipModule,
-    ViewZoneAlertComponent
+    ViewZoneAlertComponent,
+    MatBadgeModule
   ],
   templateUrl: './my-zones.component.html',
   styleUrl: './my-zones.component.css'
