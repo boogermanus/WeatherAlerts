@@ -3,5 +3,5 @@ namespace WeatherAlertsApi.Core.Models;
 
 public class User : IdentityUser
 {
-    public string Name {get;set;}
+    public string Name { get; set; } = string.Empty;
 }

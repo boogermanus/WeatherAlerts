@@ -9,14 +9,13 @@ public class UserZone : IEntity
 {
     [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     [Key]
-    public int Id {get;set;}
+    public int Id { get; set; }
+    public required string ZoneId { get; set; }
+    public DateTime CreateDate { get; set; }
+    public bool Visible { get; set; }
     [Required]
-    public string ZoneId {get;set;}
-    public DateTime CreateDate {get;set;}
-    public bool Visible {get;set;}
-    [Required]
-    public string UserId {get;set;}
-    public User User {get;set;}
+    public required string UserId { get; set; }
+    public User? User { get; set; }
 
     public UserZoneModel ToApiModel()
     {

@@ -39,7 +39,7 @@ public class UserZoneService : IUserZoneService
         return results.Select(ur => ur.ToApiModel());
     }
 
-    public async Task<UserZoneModel> DeleteUserZone(string zoneId)
+    public async Task<UserZoneModel?> DeleteUserZone(string zoneId)
     {
         var userId = _userService.CurrentUserId;
         var zones = await _userZoneRepository.GetByUserId(userId);

@@ -57,7 +57,7 @@ public class AuthService : IAuthService
 
     private string GenerateJsonWebToken(User user)
     {
-        var expires = int.Parse(_configuration["Jwt:Expires"]);
+        var expires = int.Parse(_configuration["Jwt:Expires"] ?? string.Empty);
         var tokenHandler = new JwtSecurityTokenHandler();
         var credentials = new SigningCredentials(new SymmetricSecurityKey(_key), SecurityAlgorithms.HmacSha256Signature);
 
@@ -65,7 +65,7 @@ public class AuthService : IAuthService
         {
             new Claim(JwtRegisteredClaimNames.Sub, user.Id),
             new Claim(JwtRegisteredClaimNames.Name, user.Id),
-            new Claim(JwtRegisteredClaimNames.NameId, user.UserName),
+            new Claim(JwtRegisteredClaimNames.NameId, user?.UserName ?? string.Empty),
         };
 
         var token = new JwtSecurityToken(

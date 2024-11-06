@@ -20,7 +20,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         return entity;
     }
 
-    public virtual async Task<TEntity> Delete(int id)
+    public virtual async Task<TEntity?> Delete(int id)
     {
         var existing = await Get(id);
 
@@ -34,7 +34,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         return existing;
     }
 
-    public async Task<TEntity> Get(int id)
+    public async Task<TEntity?> Get(int id)
     {
         return await Entities.FindAsync(id);
     }
@@ -44,7 +44,7 @@ public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where T
         return await Entities.ToListAsync();
     }
 
-    public virtual async Task<TEntity> Update(TEntity entity)
+    public virtual async Task<TEntity?> Update(TEntity entity)
     {
         var existing = await Get(entity.Id);
 

@@ -4,7 +4,7 @@ namespace WeatherAlertsApi.Core.ApiModels.Api;
 
 public class UserZoneModel
 {
-    public required string ZoneId { get; set; }
+    public required string ZoneId { get; set; } = string.Empty;
     public DateTime CreateDate { get; set; }
     public bool Visible { get; set; }
 
@@ -15,6 +15,7 @@ public class UserZoneModel
             ZoneId = ZoneId,
             Visible = Visible,
             CreateDate = CreateDate,
+            UserId = string.Empty
         };
     }
 }

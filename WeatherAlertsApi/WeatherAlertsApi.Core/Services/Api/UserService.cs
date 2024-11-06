@@ -13,7 +13,7 @@ public class UserService : IUserService
     {
         _context = context;
     }
-    public ClaimsPrincipal User => _context.HttpContext.User;
+    public ClaimsPrincipal? User => _context.HttpContext?.User;
 
-    public string CurrentUserId => User.FindFirstValue(JwtRegisteredClaimNames.Name) ?? string.Empty;
+    public string CurrentUserId => User?.FindFirstValue(JwtRegisteredClaimNames.Name) ?? string.Empty;
 }

@@ -10,7 +10,7 @@ public class ZoneService : IZoneService
     {
         _restSharpService = service;
     }
-    public async Task<Zones> GetByState(string state)
+    public async Task<Zones?> GetByState(string state)
     {
         return await _restSharpService.Get<Zones>("https://api.weather.gov", "zones", new Dictionary<string, string>
         {

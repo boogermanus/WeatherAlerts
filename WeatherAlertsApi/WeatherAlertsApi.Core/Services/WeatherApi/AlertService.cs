@@ -10,7 +10,7 @@ public class AlertService : IAlertsService
     {
         _restSharpService = service;
     }
-    public async Task<Alerts> GetActiveAlerts()
+    public async Task<Alerts?> GetActiveAlerts()
     {
         return await _restSharpService.Get<Alerts>(
             "https://api.weather.gov/",

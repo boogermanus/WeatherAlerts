@@ -5,7 +5,7 @@ namespace WeatherAlertsApi.Core.Services;
 
 public class RestSharpService : IRestSharpService
 {
-    public async Task<TEntity> Get<TEntity>(string url, string path, Dictionary<string, string>? parameters = null)
+    public async Task<TEntity?> Get<TEntity>(string url, string path, Dictionary<string, string>? parameters = null)
     {
         var options = new RestClientOptions(url);
         var client = new RestClient(options);
