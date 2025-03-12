@@ -1,0 +1,53 @@
+<div class="row ml-1">
+    <p>Enter a state and press Tab to show zones which can be added to My Zones to view their activate alerts.</p>
+</div>
+<div class="row">
+    <mat-form-field class="col-sm-2">
+        <mat-label>Zone Type</mat-label>
+        <mat-select [(value)]="typeSelected" (blur)="loadZones()">
+            <mat-option value="public">Public</mat-option>
+            <mat-option value="county">County</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field class="col-sm-2">
+        <mat-label>State</mat-label>
+        <input type="text" matInput [matAutocomplete]="autoState" [formControl]="statesControl" (blur)="loadZones()">
+        <mat-autocomplete #autoState="matAutocomplete" [displayWith]="displayWith">
+            <mat-option *ngFor="let state of statesFilter | async" [value]="state">
+                {{state.caption}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <mat-form-field class="col-sm-6" style="width: 100%">
+        <mat-label>filter</mat-label>
+        <input type="text" matInput [disabled]="!statesControl.valid" [(ngModel)]="filter">
+    </mat-form-field>
+</div>
+<div class="row" *ngIf="showTable">
+    <table class="table">
+        <thead>
+            <th> Id </th>
+            <th> Name </th>
+            <th> Add zone </th>
+        </thead>
+        <tbody>
+            <tr *ngFor="let zone of zones | zoneFilter:filter">
+                <td>{{zone.id}}</td>
+                <td>{{zone.name}}</td>
+                <td>
+                    <button *ngIf="!zone.userHasZone" mat-mini-fab matTooltip="Add to My Zones"
+                        matTooltipPosition="left" color="primary" (click)="addZone(zone.id)">
+                        <mat-icon>add</mat-icon>
+                    </button>
+                    <button *ngIf="zone.userHasZone" mat-mini-fab matTooltip="Remove from My Zones"
+                        matTooltipPosition="left" color="primary" (click)="deleteZone(zone.id)">
+                        <mat-icon>remove</mat-icon>
+                    </button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+<ng-template [ngIf]="loading">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+</ng-template>
