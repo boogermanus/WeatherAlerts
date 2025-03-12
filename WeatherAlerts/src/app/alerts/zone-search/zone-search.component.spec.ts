@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ZoneSearchComponent } from './zone-search.component';
+import { provideHttpClient } from '@angular/common/http';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 
 describe('ZoneSearchComponent', () => {
   let component: ZoneSearchComponent;
@@ -8,7 +10,11 @@ describe('ZoneSearchComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ZoneSearchComponent]
+      imports: [ZoneSearchComponent],
+      providers: [
+        provideHttpClient(),
+        provideNoopAnimations()
+      ]
     })
     .compileComponents();
 

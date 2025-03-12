@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ViewZoneAlertComponent } from './view-zone-alert.component';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('ViewZoneAlertComponent', () => {
   let component: ViewZoneAlertComponent;
@@ -8,7 +9,10 @@ describe('ViewZoneAlertComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ViewZoneAlertComponent]
+      imports: [ViewZoneAlertComponent],
+      providers: [
+        provideHttpClient()
+      ]
     })
     .compileComponents();
     
