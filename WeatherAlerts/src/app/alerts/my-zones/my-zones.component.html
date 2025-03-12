@@ -17,3 +17,6 @@
     <app-view-zone-alert #zoneAlerts [zoneId]="zone.id"></app-view-zone-alert>
     }
 </div>
+@if(showNoZones) {
+    <div>No zones have been added</div>
+}

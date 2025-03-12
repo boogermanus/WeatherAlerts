@@ -30,6 +30,7 @@ export class MyZonesComponent implements OnInit, OnDestroy {
   public userZones: IUserZone[] = [];
   public zones: IZoneProperties[] = [];
   private subscriptions: Subscription = new Subscription();
+  public showNoZones = false;
 
   constructor(private readonly userZoneService: UserZoneService,
     private readonly zonesService: ZonesService
@@ -40,6 +41,10 @@ export class MyZonesComponent implements OnInit, OnDestroy {
       .subscribe({
         next: (data) => {
           let userZones = data.map(uz => uz.zoneId);
+          if(userZones.length === 0) {
+            this.showNoZones = true;
+            return;
+          }
           this.loadZones(userZones);
         }
       }));
@@ -67,6 +72,9 @@ export class MyZonesComponent implements OnInit, OnDestroy {
         next: () => {
           const index = this.zones.findIndex(z => z.id === zoneId)
           this.zones.splice(index, 1);
+          if(this.zones.length === 0) {
+            this.showNoZones = true;
+          }
         }
       }));
   }
