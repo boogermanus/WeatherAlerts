@@ -1,6 +1,4 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ZonesService } from '../../services/zones.service';
-import { UserZoneService } from '../../services/user-zone.service';
 import { ZoneSearchComponent } from '../zone-search/zone-search.component';
 import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/button-toggle';
 import { ZoneMapComponent } from "../zone-map/zone-map.component";
