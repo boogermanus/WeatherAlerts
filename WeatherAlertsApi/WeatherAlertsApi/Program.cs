@@ -1,6 +1,5 @@
 using Microsoft.EntityFrameworkCore;
 using WeatherAlertsApi.Infrastrcture;
-using WeatherAlertsApi.Core.Services;
 using WeatherAlertsApi.Core.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -8,9 +7,7 @@ using System.Text;
 using WeatherAlertsApi.Infrastrcture.Repositories;
 using Microsoft.OpenApi.Models;
 using WeatherAlertsApi.Core.Interfaces.Api;
-using WeatherAlertsApi.Core.Interfaces.WeatherApi;
 using WeatherAlertsApi.Core.Services.Api;
-using WeatherAlertsApi.Core.Services.WeatherApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,9 +58,6 @@ builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddTransient<IUserService, UserService>();
 builder.Services.AddScoped<IUserZoneRepository, UserZoneRepository>();
 builder.Services.AddScoped<IUserZoneService, UserZoneService>();
-builder.Services.AddTransient<IRestSharpService,RestSharpService>();
-builder.Services.AddScoped<IZoneService, ZoneService>();
-builder.Services.AddScoped<IAlertsService, AlertService>();
 
 var app = builder.Build();
 
