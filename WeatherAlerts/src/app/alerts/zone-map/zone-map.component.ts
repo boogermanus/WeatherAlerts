@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { icon, LatLng, Layer, LeafletMouseEvent, marker, tileLayer } from 'leaflet';
+import { Observable } from 'rxjs';
+import { PointService } from '../../services/point.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-zone-map',
   standalone: true,
   imports: [
-    LeafletModule
+    LeafletModule,
+    CommonModule
   ],
   templateUrl: './zone-map.component.html',
   styleUrl: './zone-map.component.css'
@@ -21,6 +25,9 @@ export class ZoneMapComponent {
     zoom: 5,
     center: this.latLng
   }
+  public info: Observable<any>;
+
+  constructor(private readonly pointService: PointService) {}
 
   public handleClick(event: LeafletMouseEvent): void {
     this.latLng = event?.latlng;
@@ -37,5 +44,6 @@ export class ZoneMapComponent {
       }
     )
     this.markers.push(newMarker);
+    this.info = this.pointService.getPoints(this.latLng);
   }
 }
