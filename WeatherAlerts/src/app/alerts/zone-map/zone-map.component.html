@@ -1,5 +1,10 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div style="height: 300px" leaflet [leafletOptions]="options"></div>
+        <div style="height: 300px" 
+            leaflet 
+            [leafletOptions]="options"
+            [leafletLayers]="markers"
+            (leafletClick)="handleClick($event)">
+        </div>
     </div>
 </div>
