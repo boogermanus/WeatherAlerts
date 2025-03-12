@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AlertViewComponent } from './alert-view.component';
+import { ActivatedRoute } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
 
 describe('AlertViewComponent', () => {
   let component: AlertViewComponent;
@@ -8,7 +10,13 @@ describe('AlertViewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AlertViewComponent]
+      imports: [
+        AlertViewComponent, 
+      ],
+      providers: [
+        provideHttpClient(),
+        { provide: ActivatedRoute, useValue: { snapshot: {params: {id: 1}}}}
+      ]
     })
       .compileComponents();
 
