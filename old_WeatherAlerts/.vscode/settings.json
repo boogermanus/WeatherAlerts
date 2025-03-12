@@ -1,5 +1,0 @@
-{
-    "appService.preDeployTask": "publish-release",
-    "appService.deploySubpath": "bin\\Release\\netcoreapp3.0\\publish",
-    "appService.defaultWebAppToDeploy": "/subscriptions/d451e4ab-1bbd-4322-9ab8-59e96468e3e9/resourceGroups/appsvc_windows_centralus/providers/Microsoft.Web/sites/weatheralerts-test"
-}
