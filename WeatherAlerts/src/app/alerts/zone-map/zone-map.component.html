@@ -1,13 +1,32 @@
 <div class="row justify-content-center">
     <div class="col-md-8">
-        <div style="height: 300px" 
-            leaflet 
-            [leafletOptions]="options"
-            [leafletLayers]="markers"
+        <div style="height: 300px" leaflet [leafletOptions]="options" [leafletLayers]="markers"
             (leafletClick)="handleClick($event)">
         </div>
     </div>
 </div>
-<div>
-    {{info | async | json}}
-</div>
+
+<ng-template [ngIf]="data !== null">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <mat-list>
+                @for(value of list; track value) {
+                <mat-list-item>
+                    <span>
+                        {{city}}, {{state}} - {{value}}
+                    </span>
+                    <span style="float: right;">
+                        <button mat-mini-fab color="primary" (click)="handleAdd(value)">
+                            <mat-icon>add</mat-icon>
+                        </button>
+                    </span>
+                </mat-list-item>
+                }
+            </mat-list>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template [ngIf]="loading">
+    <mat-spinner style="margin: 0 auto;"></mat-spinner>
+</ng-template>
