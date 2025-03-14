@@ -485,5 +485,5 @@ $RECYCLE.BIN/
 app.db
 app.db-shm
 app.db-wal
-app-production.db
+app.production.db
 appsettings.Production.json
