@@ -112,9 +112,14 @@ export class ZoneMapComponent implements OnInit, OnDestroy {
     }
   }
 
-  public async handleAdd(value: string): Promise<void> {
-    await this.userZoneService.addUserZone({ zoneId: value, createDate: new Date(), visible: true });
-    const index = this.list.findIndex(f => f === value);
-    this.list.splice(index);
+  public handleAdd(value: string): void {
+    this.userZoneService.addUserZone({ zoneId: value, createDate: new Date(), visible: true })
+      .subscribe({
+        next: () => {
+          const index = this.list.findIndex(f => f === value);
+          this.list.splice(index);
+        }
+      })
+
   }
 }
