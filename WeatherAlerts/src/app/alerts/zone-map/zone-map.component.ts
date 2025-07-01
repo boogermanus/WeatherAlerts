@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { icon, LatLng, Layer, LeafletMouseEvent, marker, tileLayer } from 'leaflet';
-import { Observable, Subscribable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { PointService } from '../../services/point.service';
 import { CommonModule } from '@angular/common';
 import { UserZoneService } from '../../services/user-zone.service';
