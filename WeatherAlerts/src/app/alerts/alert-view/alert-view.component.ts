@@ -12,17 +12,16 @@ import { MatButtonModule } from '@angular/material/button';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-alert-view',
-  standalone: true,
-  imports: [
-    MatCardModule,
-    MatTooltipModule,
-    MatIconModule,
-    MatButtonModule,
-    CommonModule
-  ],
-  templateUrl: './alert-view.component.html',
-  styleUrl: './alert-view.component.css'
+    selector: 'app-alert-view',
+    imports: [
+        MatCardModule,
+        MatTooltipModule,
+        MatIconModule,
+        MatButtonModule,
+        CommonModule
+    ],
+    templateUrl: './alert-view.component.html',
+    styleUrl: './alert-view.component.css'
 })
 export class AlertViewComponent implements OnInit, OnDestroy{
   private readonly ID: string = 'id';

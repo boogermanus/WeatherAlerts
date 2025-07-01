@@ -11,11 +11,12 @@
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular-devkit/build-angular:browser",
+          "builder": "@angular-devkit/build-angular:application",
           "options": {
-            "outputPath": "dist/weather-alerts",
+            "outputPath": {
+              "base": "dist/weather-alerts"
+            },
             "index": "src/index.html",
-            "main": "src/main.ts",
             "polyfills": [
               "zone.js"
             ],
@@ -38,7 +39,8 @@
             "scripts": [],
             "allowedCommonJsDependencies": [
               "leaflet"
-            ]
+            ],
+            "browser": "src/main.ts"
           },
           "configurations": {
             "production": {

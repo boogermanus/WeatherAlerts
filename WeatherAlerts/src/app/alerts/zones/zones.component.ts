@@ -4,15 +4,14 @@ import { MatButtonToggleChange, MatButtonToggleModule } from '@angular/material/
 import { ZoneMapComponent } from "../zone-map/zone-map.component";
 
 @Component({
-  selector: 'app-zones',
-  standalone: true,
-  templateUrl: './zones.component.html',
-  styleUrl: './zones.component.css',
-  imports: [
-    ZoneSearchComponent,
-    MatButtonToggleModule,
-    ZoneMapComponent
-]
+    selector: 'app-zones',
+    templateUrl: './zones.component.html',
+    styleUrl: './zones.component.css',
+    imports: [
+        ZoneSearchComponent,
+        MatButtonToggleModule,
+        ZoneMapComponent
+    ]
 })
 export class ZonesComponent implements OnInit, OnDestroy {
 

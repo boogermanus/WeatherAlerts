@@ -12,18 +12,17 @@ import { Subscription } from 'rxjs';
 import { MatBadgeModule } from '@angular/material/badge';
 
 @Component({
-  selector: 'app-my-zones',
-  standalone: true,
-  imports: [
-    CommonModule,
-    MatIconModule,
-    MatButtonModule,
-    MatTooltipModule,
-    ViewZoneAlertComponent,
-    MatBadgeModule
-  ],
-  templateUrl: './my-zones.component.html',
-  styleUrl: './my-zones.component.css'
+    selector: 'app-my-zones',
+    imports: [
+        CommonModule,
+        MatIconModule,
+        MatButtonModule,
+        MatTooltipModule,
+        ViewZoneAlertComponent,
+        MatBadgeModule
+    ],
+    templateUrl: './my-zones.component.html',
+    styleUrl: './my-zones.component.css'
 })
 export class MyZonesComponent implements OnInit, OnDestroy {
 

@@ -5,11 +5,10 @@ import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs';
 
 @Component({
-  selector: 'app-nav-menu',
-  standalone: true,
-  imports: [RouterModule, CommonModule],
-  templateUrl: './nav-menu.component.html',
-  styleUrl: './nav-menu.component.css'
+    selector: 'app-nav-menu',
+    imports: [RouterModule, CommonModule],
+    templateUrl: './nav-menu.component.html',
+    styleUrl: './nav-menu.component.css'
 })
 export class NavMenuComponent implements OnInit {
   isExpanded: boolean = false;

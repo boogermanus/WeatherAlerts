@@ -28,9 +28,8 @@ function validateState(control: FormControl): ValidationErrors {
 }
 
 @Component({
-  selector: 'app-zone-search',
-  standalone: true,
-  imports: [
+    selector: 'app-zone-search',
+    imports: [
         FormsModule,
         ReactiveFormsModule,
         CommonModule,
@@ -43,9 +42,9 @@ function validateState(control: FormControl): ValidationErrors {
         MatButtonModule,
         MatTooltipModule,
         MatSelectModule,
-  ],
-  templateUrl: './zone-search.component.html',
-  styleUrl: './zone-search.component.css'
+    ],
+    templateUrl: './zone-search.component.html',
+    styleUrl: './zone-search.component.css'
 })
 export class ZoneSearchComponent implements OnInit, OnDestroy {
   public statesControl = new FormControl<any>('', validateState);

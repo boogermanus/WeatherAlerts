@@ -18,25 +18,24 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatBadgeModule } from '@angular/material/badge';
 @Component({
-  selector: 'app-alerts',
-  standalone: true,
-  imports: [
-    MatTableModule,
-    MatFormFieldModule,
-    MatSelectModule,
-    MatProgressSpinnerModule,
-    RouterModule,
-    MatPaginatorModule,
-    CommonModule,
-    MatSortModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatBadgeModule,
-  ],
-  templateUrl: './alerts.component.html',
-  styleUrl: './alerts.component.css'
+    selector: 'app-alerts',
+    imports: [
+        MatTableModule,
+        MatFormFieldModule,
+        MatSelectModule,
+        MatProgressSpinnerModule,
+        RouterModule,
+        MatPaginatorModule,
+        CommonModule,
+        MatSortModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatBadgeModule,
+    ],
+    templateUrl: './alerts.component.html',
+    styleUrl: './alerts.component.css'
 })
 export class AlertsComponent implements OnInit, OnDestroy {
 

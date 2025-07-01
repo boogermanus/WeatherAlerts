@@ -12,18 +12,17 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 
 @Component({
-  selector: 'app-zone-map',
-  standalone: true,
-  imports: [
-    LeafletModule,
-    CommonModule,
-    MatProgressSpinnerModule,
-    MatListModule,
-    MatButtonModule,
-    MatIconModule
-  ],
-  templateUrl: './zone-map.component.html',
-  styleUrl: './zone-map.component.css'
+    selector: 'app-zone-map',
+    imports: [
+        LeafletModule,
+        CommonModule,
+        MatProgressSpinnerModule,
+        MatListModule,
+        MatButtonModule,
+        MatIconModule
+    ],
+    templateUrl: './zone-map.component.html',
+    styleUrl: './zone-map.component.css'
 })
 export class ZoneMapComponent implements OnInit, OnDestroy {
   public latLng: LatLng = new LatLng(33.67, -101.82);

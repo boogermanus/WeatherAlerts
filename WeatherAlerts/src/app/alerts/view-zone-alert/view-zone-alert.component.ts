@@ -8,16 +8,15 @@ import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-view-zone-alert',
-  standalone: true,
-  imports: [
-    AlertViewComponent,
-    MatProgressSpinnerModule,
-    MatExpansionModule,
-    CommonModule
-  ],
-  templateUrl: './view-zone-alert.component.html',
-  styleUrl: './view-zone-alert.component.css'
+    selector: 'app-view-zone-alert',
+    imports: [
+        AlertViewComponent,
+        MatProgressSpinnerModule,
+        MatExpansionModule,
+        CommonModule
+    ],
+    templateUrl: './view-zone-alert.component.html',
+    styleUrl: './view-zone-alert.component.css'
 })
 export class ViewZoneAlertComponent implements OnInit, OnDestroy {
   @Input()zoneId: string;
