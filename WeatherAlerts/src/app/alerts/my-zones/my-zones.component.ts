@@ -25,8 +25,6 @@ import { MatBadgeModule } from '@angular/material/badge';
     styleUrl: './my-zones.component.css'
 })
 export class MyZonesComponent implements OnInit, OnDestroy {
-
-  public userZones: IUserZone[] = [];
   public zones: IZoneProperties[] = [];
   private subscriptions: Subscription = new Subscription();
   public showNoZones = false;
