@@ -116,7 +116,7 @@ export class ZoneMapComponent implements OnInit, OnDestroy {
       .subscribe({
         next: () => {
           const index = this.list.findIndex(f => f === value);
-          this.list.splice(index);
+          this.list.splice(index, 1);
         }
       })
 
