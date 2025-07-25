@@ -3,7 +3,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTooltipModule } from '@angular/material/tooltip';
-import { IUserZone } from '../../interfaces/iuser-zone';
 import { IZoneProperties } from '../../interfaces/izone-properties';
 import { UserZoneService } from '../../services/user-zone.service';
 import { ZonesService } from '../../services/zones.service';

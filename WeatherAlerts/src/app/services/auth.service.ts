@@ -6,13 +6,13 @@ import {BehaviorSubject, Observable} from 'rxjs';
 import {IAuthResponse} from '../interfaces/iauth-response';
 import {ApiConfig} from '../config';
 import {RegisterModel} from '../models/register-model';
+import {AuthConstants} from '../auth/auth-constants'
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-  private readonly TOKEN: string = "weather_alerts_token";
   private authenticated: BehaviorSubject<boolean> = new BehaviorSubject(false);
 
   constructor(
@@ -28,12 +28,12 @@ export class AuthService {
   }
 
   public authenticate(token: string): void {
-    localStorage.setItem(this.TOKEN, token)
+    localStorage.setItem(AuthConstants.TOKEN_NAME, token)
     this.authenticated.next(true);
   }
 
   public logout(): void {
-    localStorage.removeItem(this.TOKEN);
+    localStorage.removeItem(AuthConstants.TOKEN_NAME);
     this.authenticated.next(false);
   }
 
@@ -42,7 +42,7 @@ export class AuthService {
   }
 
   public get isValidToken(): boolean {
-    const token = localStorage.getItem(this.TOKEN);
+    const token = localStorage.getItem(AuthConstants.TOKEN_NAME);
     return !this.jwtService.isTokenExpired(token)
   }
 
@@ -51,7 +51,7 @@ export class AuthService {
   }
 
   public userId(): string {
-    const token = localStorage.getItem(this.TOKEN);
+    const token = localStorage.getItem(AuthConstants.TOKEN_NAME);
     const decode: any = this.jwtService.decodeToken(token);
     return decode.nameid;
   }
