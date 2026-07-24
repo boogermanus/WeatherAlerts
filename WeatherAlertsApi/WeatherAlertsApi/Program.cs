@@ -4,8 +4,8 @@ using WeatherAlertsApi.Core.Models;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.OpenApi;
 using WeatherAlertsApi.Infrastrcture.Repositories;
-using Microsoft.OpenApi.Models;
 using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Services.Api;
 
@@ -27,7 +27,10 @@ builder.Services.AddSwaggerGen(options =>
         In = ParameterLocation.Header,
         Scheme = "bearer"
     });
-    options.OperationFilter<AddAuthHeaderOperationFilter>();
+    options.AddSecurityRequirement(document => new OpenApiSecurityRequirement
+    {
+        [new OpenApiSecuritySchemeReference("bearer", document)] = []
+    });
 });
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? 
