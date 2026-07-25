@@ -3,7 +3,7 @@ import { LeafletModule } from '@bluehalo/ngx-leaflet';
 import { icon, LatLng, Layer, LeafletMouseEvent, marker, tileLayer } from 'leaflet';
 import { Subscription } from 'rxjs';
 import { PointService } from '../../services/point.service';
-import { CommonModule } from '@angular/common';
+
 import { UserZoneService } from '../../services/user-zone.service';
 import { IUserZone } from '../../interfaces/iuser-zone';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -14,13 +14,12 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
     selector: 'app-zone-map',
     imports: [
-        LeafletModule,
-        CommonModule,
-        MatProgressSpinnerModule,
-        MatListModule,
-        MatButtonModule,
-        MatIconModule
-    ],
+    LeafletModule,
+    MatProgressSpinnerModule,
+    MatListModule,
+    MatButtonModule,
+    MatIconModule
+],
     templateUrl: './zone-map.component.html',
     styleUrl: './zone-map.component.css'
 })

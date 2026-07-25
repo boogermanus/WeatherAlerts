@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -13,13 +13,12 @@ import { MatBadgeModule } from '@angular/material/badge';
 @Component({
     selector: 'app-my-zones',
     imports: [
-        CommonModule,
-        MatIconModule,
-        MatButtonModule,
-        MatTooltipModule,
-        ViewZoneAlertComponent,
-        MatBadgeModule
-    ],
+    MatIconModule,
+    MatButtonModule,
+    MatTooltipModule,
+    ViewZoneAlertComponent,
+    MatBadgeModule
+],
     templateUrl: './my-zones.component.html',
     styleUrl: './my-zones.component.css'
 })

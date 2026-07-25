@@ -1,13 +1,15 @@
-<ng-template [ngIf]="loading">
-    <mat-spinner style="margin: 0 auto;"></mat-spinner>
-</ng-template>
+@if (loading) {
+  <mat-spinner style="margin: 0 auto;"></mat-spinner>
+}
 <mat-accordion>
-    <mat-expansion-panel *ngFor="let alert of alerts">
-        <mat-expansion-panel-header class="expansionPanel">
-            <mat-panel-title>
-                {{alert.headline}}
-            </mat-panel-title>
-        </mat-expansion-panel-header>
-        <app-alert-view [alert]="alert" [showBackButton]="false"></app-alert-view>
+  @for (alert of alerts; track alert) {
+    <mat-expansion-panel>
+      <mat-expansion-panel-header class="expansionPanel">
+        <mat-panel-title>
+          {{alert.headline}}
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <app-alert-view [alert]="alert" [showBackButton]="false"></app-alert-view>
     </mat-expansion-panel>
+  }
 </mat-accordion>
