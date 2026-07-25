@@ -4,17 +4,16 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { IAlertProperties } from '../../interfaces/ialert-properties';
 import { AlertService } from '../../services/alert.service';
-import { CommonModule } from '@angular/common';
+
 import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'app-view-zone-alert',
     imports: [
-        AlertViewComponent,
-        MatProgressSpinnerModule,
-        MatExpansionModule,
-        CommonModule
-    ],
+    AlertViewComponent,
+    MatProgressSpinnerModule,
+    MatExpansionModule
+],
     templateUrl: './view-zone-alert.component.html',
     styleUrl: './view-zone-alert.component.css'
 })
