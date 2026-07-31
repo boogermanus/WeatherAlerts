@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using WeatherAlertsApi.Core.Models;
 
-namespace WeatherAlertsApi.Infrastrcture;
+namespace WeatherAlertsApi.Infrastructure;
 
 public class AppDbContext : IdentityDbContext<User>
 {

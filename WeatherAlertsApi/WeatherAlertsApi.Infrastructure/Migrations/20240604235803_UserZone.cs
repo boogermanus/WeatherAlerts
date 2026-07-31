@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace WeatherAlertsApi.Infrastrcture.Migrations
+namespace WeatherAlertsApi.Infrastructure.Migrations
 {
     /// <inheritdoc />
     public partial class UserZone : Migration

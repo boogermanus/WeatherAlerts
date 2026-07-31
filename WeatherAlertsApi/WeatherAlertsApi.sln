@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAlertsApi.Infrastrcture", "WeatherAlertsApi.Infrastrcture\WeatherAlertsApi.Infrastrcture.csproj", "{665DAEE2-AF74-4CAA-A25F-5A8080075A52}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAlertsApi.Infrastructure", "WeatherAlertsApi.Infrastructure\WeatherAlertsApi.Infrastructure.csproj", "{665DAEE2-AF74-4CAA-A25F-5A8080075A52}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WeatherAlertsApi", "WeatherAlertsApi\WeatherAlertsApi.csproj", "{E9C361C2-9783-4075-AC70-9740869FD17E}"
 EndProject

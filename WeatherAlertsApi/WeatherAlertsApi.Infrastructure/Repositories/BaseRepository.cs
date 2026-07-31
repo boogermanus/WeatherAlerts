@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using WeatherAlertsApi.Core.Interfaces;
 
-namespace WeatherAlertsApi.Infrastrcture.Repositories;
+namespace WeatherAlertsApi.Infrastructure.Repositories;
 
 public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class, IEntity
 {

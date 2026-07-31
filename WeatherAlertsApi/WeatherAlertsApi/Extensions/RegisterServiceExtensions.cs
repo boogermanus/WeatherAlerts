@@ -4,9 +4,9 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using Microsoft.Extensions.Configuration;
-using WeatherAlertsApi.Infrastrcture;
+using WeatherAlertsApi.Infrastructure;
 using WeatherAlertsApi.Core.Models;
-using WeatherAlertsApi.Infrastrcture.Repositories;
+using WeatherAlertsApi.Infrastructure.Repositories;
 using WeatherAlertsApi.Core.Interfaces.Api;
 using WeatherAlertsApi.Core.Services.Api;
 
